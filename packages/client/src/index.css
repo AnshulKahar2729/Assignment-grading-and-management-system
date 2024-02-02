@@ -28,7 +28,7 @@ html{
 .main-layout{
   display: grid;
   grid-template-columns: 1fr;
-  padding: 8px;
+  /* padding: 8px; */
 }
 .sidebar-layout{
   background-color: rgba(128, 128, 128, 0.447);
