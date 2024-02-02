@@ -4,11 +4,11 @@ const { Schema, model } = mongoose;
 const assignmentSchema = new Schema({
   startDate: {
     type: Date,
-    // required: true,
+    required: true,
   },
   endDate: {
     type: Date,
-    // required: true,
+    required: true,
   },
   file: {
     type: String,
@@ -30,10 +30,6 @@ const assignmentSchema = new Schema({
       ref: "SubmittedAssignment",
     },
   ],
-  course: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Course",
-  },
 });
 
 const Assignment = model("Assignment", assignmentSchema);
