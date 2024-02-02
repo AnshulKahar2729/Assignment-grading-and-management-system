@@ -15,6 +15,8 @@ connectDB();
 // middlewares
 app.use(cors());
 app.use(express.json());
+// sending form data too
+app.use(express.urlencoded({ extended: true }));
 
 // routes middleware
 app.use("/api/login", loginRoute);
@@ -24,9 +26,9 @@ app.use("/api/teacher/assignment", teacherAssignmentRoute);
 app.use("/api/student/assignment", studentAssignmentRoute);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.json({msg : "Hello World!"});
 });
 
-app.listen(4000, () => {
-  console.log("Server is running on port 4000");
-});
+app.listen(5000, () => {
+  console.log("Server is running on port 5000");
+})
