@@ -3,8 +3,10 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import StudentAssignments from "../pages/student/StudentAssignments";
 import StudentDashboard from "../pages/student/StudentDashboard";
+import StudentParticularAssignment from "../pages/student/StudentParticularAssignment";
 import StudentSettings from "../pages/student/StudentSettings";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import TryAPI from "../tryAPI/TryAPI";
 
 const routes = [
   {
@@ -36,9 +38,17 @@ const routes = [
     component: <StudentAssignments />
   },
   {
+    path: "/dashboard/student/assignments/ass1",
+    component: <StudentParticularAssignment />
+  },
+  {
     path: "/dashboard/student/settings",
     component: <StudentSettings />
   },
+  {
+    path  :"/tryapi",
+    component: <TryAPI />
+  }
 ];
 
 export default routes;
