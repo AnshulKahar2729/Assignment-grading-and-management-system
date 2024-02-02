@@ -21,6 +21,16 @@ html{
   padding: 0;
   box-sizing: border-box;
 }
+
+.hideScrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .custom-container{
   max-width: 1200px;
 
@@ -34,10 +44,10 @@ html{
   background-color: rgba(128, 128, 128, 0.447);
 }
 
-@media (min-width:450px) {
+@media (min-width:640px) {
 .main-layout{
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 1fr;
 }
 
 }
@@ -49,10 +59,11 @@ html{
     display: grid;
     grid-template-columns: 250px 1fr;
   }
-  
 }
 /* md  */
-@media (min-width:768px) {}
+@media (min-width:768px) {
+  
+}
 /* lg  */
 @media (min-width:1024px) {}
 /* xl  */
