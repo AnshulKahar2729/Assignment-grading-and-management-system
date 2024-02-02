@@ -27,6 +27,7 @@ router.post("/", upload.single("file"), async (req, res) => {
             console.error(error);
             res.status(500).json({ error });
           } else {
+            console.log("here");
             console.log(result);
             const URL = result.secure_url;
             console.log("URL", URL);
