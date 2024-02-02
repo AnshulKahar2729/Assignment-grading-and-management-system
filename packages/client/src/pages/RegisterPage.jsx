@@ -2,20 +2,67 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/EduTrack (2).png';
 import Register from '../assets/Sign up.gif';
+import axios from 'axios';
 
 function RegisterPage() {
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = useState("teacher");
-    const [year, setYear] = useState("");
-    const [branch, setBranch] = useState("");
-    const [division, setDivision] = useState("");
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("teacher");
+  const [year, setYear] = useState("");
+  const [branch, setBranch] = useState("");
+  const [division, setDivision] = useState("");
 
-   const handleSignup = (e) => {
+  //       name,
+  //       email,
+  //       password: hashedPassword,
+  //       branch,
+  //       year,
+  //       division,
+  //       studentId,
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(name, email, password, role, year, branch, division);
+
+    try {
+      // if role student 
+      if(role === "student"){
+        const { data } = await axios.post("https://assignment-grading-and-management-system.onrender.com/api/register", {
+        name,
+        email,
+        password,
+        role,
+        year,
+        branch,
+        division
+      });
+      if (data) {
+        localStorage.setItem("token", data.token);
+        alert("Registered Successfully")
+      }
+      console.log('Registered Successfully!');
+
+      // for teacher 
+      }else{
+        const { data } = await axios.post("https://assignment-grading-and-management-system.onrender.com/api/register", {
+        name,
+        email,
+        password,
+        role
+      });
+      if (data) {
+        localStorage.setItem("token", data.token);
+        alert("Registered Successfully")
+      }
+      console.log('Registered Successfully');
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -27,7 +74,7 @@ function RegisterPage() {
           </Link>
           <div className='m-2'>
           <h2 className="text-3xl font-extrabold mb-4 text-[#176DEF]">Sign Up</h2>
-          <form onSubmit={handleSignup}>
+          <form onSubmit={handleSubmit}>
             {/* Add your signup form fields here */}
             <div className="mb-4">
               <label className="block text-sm font-medium">Full Name</label>
@@ -35,6 +82,10 @@ function RegisterPage() {
                 type="text"
                 className="w-full border p-2 rounded bg-gray-100 text-black outline-none"
                 required
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
               />
             </div>
             <div className="mb-4">
@@ -43,6 +94,10 @@ function RegisterPage() {
                 type="email"
                 className="w-full border p-2 rounded bg-gray-100 text-black outline-none"
                 required
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
               />
             </div>
             <div className="mb-4 ">
@@ -51,6 +106,10 @@ function RegisterPage() {
                 type="password"
                 className="w-full border p-2 rounded bg-gray-100 text-black outline-none"
                 required
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
               />
             </div>
 
@@ -76,6 +135,7 @@ function RegisterPage() {
                     Year
                   </label>
                   <input
+                    required
                     value={year}
                     onChange={(event) => {
                       setYear(event.target.value);
@@ -90,6 +150,7 @@ function RegisterPage() {
                     Branch
                   </label>
                   <input
+                    required
                     value={branch}
                     onChange={(event) => {
                       setBranch(event.target.value);
@@ -104,6 +165,7 @@ function RegisterPage() {
                     Division
                   </label>
                   <input
+                    required
                     value={division}
                     onChange={(event) => {
                       setDivision(event.target.value);
