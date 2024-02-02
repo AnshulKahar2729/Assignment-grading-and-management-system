@@ -4,6 +4,7 @@ const app = express();
 
 // import routes
 const registerRoute = require("./routes/register");
+const loginRoute = require("./routes/login");
 const connectDB = require("./config/db");
 
 connectDB();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // routes middleware
+app.use("/api/login", loginRoute);
 app.use("/api/register", registerRoute);
 
 app.get("/", (req, res) => {
