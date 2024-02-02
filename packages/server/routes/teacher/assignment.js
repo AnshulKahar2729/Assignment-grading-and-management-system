@@ -42,7 +42,7 @@ router.post("/", upload.single("file"), async (req, res) => {
             res.status(500).json({ error: "Error creating assignment" });
           }
 
-          console.log(assignmentDoc);
+          console.log(assignmentDoc); 
 
           const teacherDoc = await Teacher.findByIdAndUpdate(
             teacherId,
