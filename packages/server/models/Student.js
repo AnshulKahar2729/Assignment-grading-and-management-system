@@ -32,7 +32,7 @@ const studentSchema = new Schema({
   division: {
     type: String,
     required: true,
-    trim: true,
+    // trim: true,
     enum : ["A", "B", "C"],
   },
   submittedAssignment: {
