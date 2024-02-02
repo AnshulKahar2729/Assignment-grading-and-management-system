@@ -30,15 +30,15 @@ const StudentSidebar = () => {
   };
 
   return (
-    <div className='py-10 h-screen flex flex-col justify-between sidebar'>
-      <div className='ml-8 flex flex-col gap-2'>
+    <div className='py-10 h-screen flex flex-col justify-between sidebar bg-[#176DEF] text-white'>
+      <div className='flex flex-col gap-2'>
         {NAV.map((item) => (
           <Link to={item.link} key={item.title}>
             <div
               onClick={() => handleClick(item.title)}
               className={`flex items-center gap-4 px-6 py-3 rounded-l-xl nav-item ${
                 item.title === selectedItem
-                  ? 'bg-[#F0F1F3]'
+                  ? 'bg-[#d6d6d6]'
                   : 'bg-transparent'
               }`}
               id={item.title}
