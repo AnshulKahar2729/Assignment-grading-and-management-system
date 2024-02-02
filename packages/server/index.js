@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const connectDB = require("./config/db");
+const multer = require("multer");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
 // import routes
 const registerRoute = require("./routes/register");

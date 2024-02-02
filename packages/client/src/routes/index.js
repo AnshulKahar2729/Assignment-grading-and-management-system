@@ -5,6 +5,7 @@ import StudentAssignments from "../pages/student/StudentAssignments";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import StudentSettings from "../pages/student/StudentSettings";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import TryAPI from "../tryAPI/TryAPI";
 
 const routes = [
   {
@@ -39,6 +40,10 @@ const routes = [
     path: "/dashboard/student/settings",
     component: <StudentSettings />
   },
+  {
+    path  :"/tryapi",
+    component: <TryAPI />
+  }
 ];
 
 export default routes;
