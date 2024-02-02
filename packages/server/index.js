@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const connectDB = require("./config/db");
 
 // import routes
 const registerRoute = require("./routes/register");
 const loginRoute = require("./routes/login");
-const connectDB = require("./config/db");
+const profileRoute = require("./routes/profile");
 
 connectDB();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 // routes middleware
 app.use("/api/login", loginRoute);
 app.use("/api/register", registerRoute);
+app.use("/api/profile", profileRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
