@@ -14,13 +14,12 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 router.post("/", upload.single("file"), async (req, res) => {
-  //   const { title, endDate, teacherId } = req.body;
 
   try {
     const result = await cloudinary.uploader
       .upload_stream(
         {
-          /* Cloudinary options */
+          
         },
         async (error, result) => {
           if (error) {
@@ -31,7 +30,6 @@ router.post("/", upload.single("file"), async (req, res) => {
             console.log(result);
             const URL = result.secure_url;
             console.log("URL", URL);
-
             res.status(200).json({ URL });
           }
         }
