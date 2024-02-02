@@ -1,10 +1,13 @@
 import React from 'react'
+import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout'
+import MainLayout from '../../layout/MainLayout'
 
 const StudentDashboard = () => {
   return (
-    <div>
-      StudentDashboard
-    </div>
+    <MainLayout>
+        <StudentSidebarLayout/>
+        <div className='bg-blue-500'>StudentDashboard</div>
+    </MainLayout>
   )
 }
 
