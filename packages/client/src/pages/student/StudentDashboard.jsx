@@ -6,7 +6,7 @@ const StudentDashboard = () => {
   return (
     <MainLayout>
         <StudentSidebarLayout/>
-        <div className='bg-blue-500'>StudentDashboard</div>
+        <div className='bg-[#F0F1F3]'>StudentDashboard</div>
     </MainLayout>
   )
 }
