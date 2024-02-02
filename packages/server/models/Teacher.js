@@ -18,10 +18,10 @@ const teacherSchema = new Schema({
     type: String,
     required: true,
   },
-  uploadAssignment: [
+  uploadedAssignment: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Assignment",
     },
   ],
 });
