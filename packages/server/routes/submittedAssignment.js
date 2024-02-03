@@ -6,6 +6,8 @@ router.get("/", async (req, res) => {
     try{
         const submittedAssignments = await SubmittedAssignment.find().populate({
             path : "teacherComments"
+        }).populate({
+            path : "assignment"
         })
         res.status(200).json({submittedAssignments});
     }catch(err){
