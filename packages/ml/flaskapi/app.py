@@ -70,7 +70,7 @@ def calculateGrade():
             finalScore = (relativePlagirismScore + relativeRelevancyScore + grammerScore)/3
 
             # Respond with a JSON object
-            return jsonify({"grade" : finalScore}), 200
+            return jsonify({"grade" : finalScore, "plagirismScore" : relativePlagirismScore, "grammerScore" : grammerScore}), 200
 
 
 if __name__ == '__main__':
