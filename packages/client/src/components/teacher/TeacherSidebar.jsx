@@ -6,17 +6,17 @@ const NAV = [
   {
     title: 'Dashboard',
     icon: <i className="fa-solid fa-id-card"></i>,
-    link: '/dashboard/student',
+    link: '/dashboard/teacher',
   },
   {
     title: 'Assignments',
     icon: <i className="fa-solid fa-folder-closed"></i>,
-    link: '/dashboard/student/assignments',
+    link: '/dashboard/teacher/assignments',
   },
   {
     title: 'Settings',
     icon: <i className="fa-sharp fa-solid fa-gear"></i>,
-    link: '/dashboard/student/settings',
+    link: '/dashboard/teacher/settings',
   },
 ];
 
