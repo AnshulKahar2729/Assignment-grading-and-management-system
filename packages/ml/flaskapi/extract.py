@@ -32,3 +32,6 @@ def extract_text_from_pdf_url(pdf_url: str) -> str:
         except OSError:
             pass
 
+result = extract_text_from_pdf_url("https://res.cloudinary.com/dvzx9xowk/raw/upload/v1706965459/o19ncyojglrygd7porrs.pdf")
+
+print(result)
