@@ -1,8 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout';
 import MainLayout from '../../layout/MainLayout';
+import { UserContext } from '../../store/userContext';
+import Calendar from '../../components/_commons/calendar/StudentCalendar';
+import Deadline from '../../components/_commons/calendar/Deadline';
 
 const StudentDashboard = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const {user} = useContext(UserContext);
+  const name = user.student.name;
+  const Assignment = user.student.submittedAssignment;
+  
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
+  const Assignments = Assignment.map(assignment => ({
+    title: assignment.file,
+    date: new Date(assignment.submissionDate).toLocaleDateString(),
+    completed: true,
+  }));
+  
+
   return (
     <MainLayout>
       <StudentSidebarLayout />
@@ -11,8 +31,8 @@ const StudentDashboard = () => {
           <div className='hidden sm:block'>Welcome to EduTrack</div>
           <div className='flex flex-row gap-2 md:gap-4 items-center justify-between sm:justify-end w-full sm:w-fit'>
             <div className='flex flex-row gap-3 items-center '>
-            <i className='text-[40px] sm:text-[40px] md:text-[50px] fa-regular fa-circle-user'></i>
-            <span>Name_Of_Student</span>
+            <i className='text-[40px] text-gray-400 fa-regular fa-circle-user'></i>
+            <span className='font-semibold'>{name}</span>
             </div>
             <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout
@@ -29,12 +49,11 @@ const StudentDashboard = () => {
                  style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}
                  className=' grid grid-cols-1 sm:grid-cols-3 bg-[#176DEF] text-white rounded-xl w-full'>
                   <div className='m-4 sm:m-8 sm:border-r'>
-                    <p className='text-xl font-semibold'>Assignment</p>
+                    <p className='text-xl font-semibold'>Assignments</p>
                     <div className='flex flex-row items-center gap-3 '>
                       <i className="text-xl sm:text-2xl lg:text-4xl fa-solid fa-folder-open"></i>
                       <p className=''>
-                        <span className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>20</span> <span className='text-xl lg:text-3xl'>/</span>{' '}
-                        <span className='text-sm sm:text-base lg:text-lg'>20</span>
+                        <span className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>{Assignment.length}</span>
                       </p>
                     </div>
                   </div>
@@ -63,37 +82,17 @@ const StudentDashboard = () => {
               </div>
               <div className='flex flex-col gap-3 '>
                 <p className='text-xl font-semibold'>My Schedule</p>
-                <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-3 bg-white text-black rounded-xl w-full p-4 h-full overflow-y-scroll'>
-                  <div>Calendar</div>
-
-                  <div className='flex flex-col gap-2'>
-                    <div className='p-3 flex flex-col gap-3 border border-black rounded-xl'>
-                      <p>Assignment 1</p>
-                      <p className='flex flex-row justify-between'>
-                        <span>Time_of_Post</span> <span>Date_of_Post</span>
-                      </p>
-                    </div>
-                    <div className='p-3 flex flex-col gap-3 border border-black rounded-xl'>
-                      <p>Assignment 1</p>
-                      <p className='flex flex-row justify-between'>
-                        <span>Time_of_Post</span> <span>Date_of_Post</span>
-                      </p>
-                    </div>
-                    <div className='p-3 flex flex-col gap-3 border border-black rounded-xl'>
-                      <p>Assignment 1</p>
-                      <p className='flex flex-row justify-between'>
-                        <span>Time_of_Post</span> <span>Date_of_Post</span>
-                      </p>
-                    </div>
-                  </div>
+                <section className='grid grid-cols-1 2xl:grid-cols-2 gap-4 lg:gap-3 bg-white text-black rounded-xl w-full p-4 h-full'>
+                  <div className=''><Calendar onSelectDate={handleDateSelect} Assignments={Assignments}/></div>
+                  <div className='border-l p-3 border-gray-200'><Deadline selectedDate={selectedDate} Assignments={Assignments}/></div>
                 </section>
               </div>
             </div>
-            <div className='mt-9 w-full xl:w-[33.5%] bg-white rounded-xl h-fit px-4 py-9 flex flex-col gap-4'>
+            <div className='mt-9 w-full xl:w-[33.5%] bg-white rounded-xl max-h-[700px] px-4 py-9 flex flex-col gap-4'>
               <section className='flex flex-col gap-3 '>
                 <p className='text-[16px] font-semibold'>My Teachers</p>
                 <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border border-black rounded-xl'>
+                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
@@ -104,7 +103,7 @@ const StudentDashboard = () => {
                     </div>
                     <i class='fa-solid fa-message'></i>
                   </div>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border border-black rounded-xl'>
+                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
@@ -115,7 +114,7 @@ const StudentDashboard = () => {
                     </div>
                     <i class='fa-solid fa-message'></i>
                   </div>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border border-black rounded-xl'>
+                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
@@ -131,7 +130,7 @@ const StudentDashboard = () => {
               <section className='flex flex-col gap-3'>
                 <p className='text-[16px] font-semibold'>Uncoming Events</p>
                 <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border border-black rounded-xl'>
+                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200 '>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
@@ -142,7 +141,7 @@ const StudentDashboard = () => {
                     </div>
                     <i class='fa-solid fa-message'></i>
                   </div>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border border-black rounded-xl'>
+                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200 '>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
