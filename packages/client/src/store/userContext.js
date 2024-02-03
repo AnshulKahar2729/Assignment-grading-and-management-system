@@ -1,16 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Loader from '../components/_commons/Loader';
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate(); // initialize useHistory hook
 
     useEffect(() => {
         const getUser = async () => {
             const token = localStorage.getItem("token");
-
             try {
                 const response = await fetch("https://assignment-grading-and-management-system.onrender.com/api/profile", {
                     method: "GET",
@@ -31,12 +32,16 @@ export const UserProvider = ({ children }) => {
 
         if (localStorage.getItem("token")) {
             getUser();
+        } else{
+            setLoading(false)
+            console.log('user not logged In')
+            // navigate('/')
         }
     }, []);
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
-            {loading ? children : children}
+            {loading ? <Loader/> : children}
         </UserContext.Provider>
     );
 };
