@@ -31,13 +31,11 @@ router.get("/", async (req, res) => {
     if (payload.role === "student") {
       const studentDoc = await Student.findById(payload.id).populate({
         path: "submittedAssignment",
-        populate : {
-          path : "assignment"
-        },
-        populate : {
-          path : "teacherComments"
-        }
-      });
+        populate: [
+            { path: "assignment" },
+            { path: "teacherComments" }
+        ]
+    });
       if (!studentDoc) {
         return res.status(400).json({ message: "Student does not exist" });
       }
