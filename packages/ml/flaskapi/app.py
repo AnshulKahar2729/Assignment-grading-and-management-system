@@ -10,7 +10,6 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/', methods=['POST'])
-@cross_origin()
 def calculateGrade():
      if request.is_json:
         # Get the JSON data from the request
