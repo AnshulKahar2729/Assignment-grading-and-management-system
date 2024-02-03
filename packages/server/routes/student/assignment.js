@@ -1,6 +1,9 @@
 const express = require("express");
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
+const SubmittedAssignment = require("../../models/SubmittedAssignment");
+const Student = require("../../models/Student");
+const Assignment = require("../../models/Assignment");
 const router = express.Router();
 
 cloudinary.config({
@@ -17,6 +20,8 @@ router.post("/", upload.single("file"), async (req, res) => {
   //   const { title, endDate, teacherId } = req.body;
 
   try {
+    const { studentId, assignmentId } = req.body;
+
     const result = await cloudinary.uploader
       .upload_stream(
         {
@@ -30,6 +35,39 @@ router.post("/", upload.single("file"), async (req, res) => {
             console.log(result);
             const URL = result.secure_url;
             console.log("URL", URL);
+
+            const assignmentDoc = await Assignment.findById(assignmentId);
+            if (!assignmentDoc) {
+              res.status(500).json({
+                error: "Error finding respective corresponding assignment",
+              });
+            }
+
+            const endDate = assignmentDoc.endDate;
+            // check if the assignment is late
+
+            const isLate = new Date() > new Date(endDate);
+
+            const submittedAssignmentDoc = await SubmittedAssignment.create({
+              submittedBy: studentId,
+              submissionDate: new Date().toLocaleDateString(),
+              late: isLate,
+              file: URL,
+              assignment: assignmentId,
+            });
+
+            const studentDoc = await Student.findByIdAndUpdate(
+              studentId,
+              {
+                $push: { submittedAssignment: submittedAssignmentDoc._id },
+              },
+              { new: true }
+            );
+            if (!studentDoc) {
+              res.status(500).json({
+                error: "Error finding respective corresponding student",
+              });
+            }
 
             res.status(200).json({ URL });
           }
