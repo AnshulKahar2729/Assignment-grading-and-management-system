@@ -19,6 +19,8 @@ router.post("/", async (req, res) => {
       res.status(500).json({ error: "Error creating feedback" });
     }
 
+    console.log("feedbackDoc", feedbackDoc);
+
     const submittedAssignmentDoc = await SubmittedAssignment.findByIdAndUpdate(
       {
         _id: submittedAssignmentId,
