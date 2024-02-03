@@ -1,4 +1,4 @@
-Flask==2.1.4
+Flask==2.0.2
 colorama==0.4.4
 clisck==8.0.3
 importlib-metadata==4.8.2
