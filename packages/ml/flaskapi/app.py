@@ -12,15 +12,28 @@ def hello_world():
 
         # Check if the required keys are present in the JSON data
         if 'currentSubmission' in body and 'previousSubmission' in body:
-            cursuburl = body['currentSubmission']
-            prevsuburl = body['previousSubmission']
+            cursuburl = body['currentSubmission']  #string
+            prevsuburlArr = body['previousSubmission'] #array of strings
             print(cursuburl)
-            print(prevsuburl)
+            print(prevsuburlArr)
 
             # Extract text from the PDF URLs
             cursubtext = extract_text_from_pdf_url(cursuburl)
             print(cursubtext)
-            prevsubtext = extract_text_from_pdf_url(prevsuburl)
+
+            #i want one variable which will conatain all the text of the previous submissions
+            #we need to make for loop for this and call the function extract_text_from_pdf_url for each url
+            #and then append the text to the variable
+            prevconatiner=""
+            for i in range(len(prevsuburlArr)):
+                prevconatiner+=extract_text_from_pdf_url(prevsuburlArr[i])
+            print(prevconatiner)
+
+                
+
+            
+
+            prevsubtext = extract_text_from_pdf_url(prevsuburlArr)
             print(prevsubtext)
 
             # Calculate the cosine similarity
@@ -63,5 +76,5 @@ def extract_text():
     else:
         # If the request is not JSON, respond with an error
         return jsonify({"error": "Invalid Content-Type, expected application/json"}), 415
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
