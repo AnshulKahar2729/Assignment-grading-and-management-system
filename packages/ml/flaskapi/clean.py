@@ -9,9 +9,9 @@ def clean_Ans(currentUncleanedText:str) -> list:
     answers_array = ["Answer:" + answer for answer in answers_array]
 
     # Print the resulting array
-    print(answers_array)
-    print(len(answers_array))
-    print(type(answers_array))
+    # print(answers_array)
+    # print(len(answers_array))
+    # print(type(answers_array))
 
     return answers_array
 
@@ -25,8 +25,8 @@ def clean_Ques(assignmentUncleanedText:str) -> list:
     # Add "Question : " prefix to each element of the array
     questions_array = ["Question : " + question.strip() for question in questions_array]
 
-    print(questions_array)
-    print(len(questions_array))
-    print(type(questions_array))
+    # print(questions_array)
+    # print(len(questions_array))
+    # print(type(questions_array))
 
     return questions_array

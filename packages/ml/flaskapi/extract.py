@@ -31,9 +31,3 @@ def extract_text_from_pdf_url(pdf_url: str) -> str:
             os.remove('temp.pdf')
         except OSError:
             pass
-
-result = extract_text_from_pdf_url("https://res.cloudinary.com/dvzx9xowk/raw/upload/v1706952937/i8u9wkoqffvseuvfdizk.pdf")
-
-print(result)
-print(len(result))
-print(type(result))

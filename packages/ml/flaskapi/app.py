@@ -21,24 +21,24 @@ def calculateGrade():
 
             # Extract uncleanedtext from the PDF URLs
             currentUncleanedText = extract_text_from_pdf_url(currentSubmissionURL)
-            print(currentUncleanedText)
+            print("currentUncleanedText from app", currentUncleanedText)
             assignmentUncleanedText = extract_text_from_pdf_url(assignmentURL)
-            print(assignmentUncleanedText)
+            print("assignmentUncleanedText from app", assignmentUncleanedText)
             previousUncleanedArrText = []
             for i in range(len(previousSubmissionArrURL)):
                 previousUncleanedArrText.append(extract_text_from_pdf_url(previousSubmissionArrURL[i]))
 
-            print(assignmentUncleanedText)
+            print("assignmentUncleanedText from app", assignmentUncleanedText)
 
             # clean the text
             currentCleanedText = clean_Ans(currentUncleanedText)
-            print(currentCleanedText)
+            print("currentCleanedText from app", currentCleanedText)
             assignmentCleanedTextArr = clean_Ques(assignmentUncleanedText)
-            print(assignmentCleanedTextArr)
+            print("assignmentCleanedTextArr from app", assignmentCleanedTextArr)
             prevCleanedText = ""
             for i in range(len(previousUncleanedArrText)):
                 prevCleanedText += clean_Ans(previousUncleanedArrText[i])
-            print(prevCleanedText)
+            print("prevCleanedText from app ", prevCleanedText)
 
             #CHECK FOR PLAGIARISM
             plagirismScore = calculate_cosine_similarity(currentCleanedText, prevCleanedText)
