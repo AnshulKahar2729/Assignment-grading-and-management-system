@@ -80,6 +80,7 @@ router.post("/", upload.single("file"), async (req, res) => {
                 assignmentURL : assignmentDoc.file,
                 previousSubmissionArrURL : previousSubmissionArrURL
               });
+              console.log("data into nodejs from ML", data);
 
               allGrades = data;
               grades = data.grades;
