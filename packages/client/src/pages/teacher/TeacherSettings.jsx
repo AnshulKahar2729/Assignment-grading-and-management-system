@@ -1,19 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import TeacherSidebarLayout from '../../layout/teacher/TeacherSidebarLayout'
+import { UserContext } from '../../store/userContext';
 
-// const TeacherSettings = () => {
-//   return (
-//     <MainLayout>
-//         <TeacherSidebarLayout/>
-//           <div className=''>Teacher Settings</div>
-//     </MainLayout>
-//   )
-// }
-
-// export default TeacherSettings
 
 const TeacherSettings = () => {
+
+  const {user} = useContext(UserContext);
+  const name = user.teacher.name;
+  const role = 'Teacher';
+  const email = user.teacher.email;
 
   const [edit, setEdit] = useState(false);
 
@@ -39,12 +35,9 @@ const TeacherSettings = () => {
                   <i className='text-white text-[150px] fa-solid fa-user-secret'></i>
                 </div>
                 <div className='flex flex-col gap-2 text-white'>
-                  <p className='text-3xl font-medium'>Sumit Kharate</p>
-                  <p className='text-lg'>Role : Student</p>
-                  <p className='text-lg'>Email : sumit123@gmail.com</p>
-                  <p className='text-lg'>Year : 2nd</p>
-                  <p className='text-lg'>Branch: Electronics & Telecommunications</p>
-                  <p className='text-lg'>Division : A</p>
+                  <p className='text-3xl font-medium'>{name}</p>
+                  <p className='text-lg'>Role : {role}</p>
+                  <p className='text-lg'>Email : {email}</p>
                 </div>
               </div>
               <button

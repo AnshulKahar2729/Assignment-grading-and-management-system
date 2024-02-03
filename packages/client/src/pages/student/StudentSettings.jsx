@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout';
+import { UserContext } from '../../store/userContext';
 
 const StudentSettings = () => {
+
+  const {user} = useContext(UserContext)
+  const name = user.student.name;
+  const email = user.student.email;
+  const branch = user.student.branch;
+  const year = user.student.year;
+  const division = user.student.division;
+
 
   const [edit, setEdit] = useState(false);
 
@@ -28,12 +37,12 @@ const StudentSettings = () => {
                   <i className='text-white text-[150px] fa-solid fa-user-secret'></i>
                 </div>
                 <div className='flex flex-col gap-2 text-white'>
-                  <p className='text-3xl font-medium'>Sumit Kharate</p>
+                  <p className='text-3xl font-medium'>{name}</p>
                   <p className='text-lg'>Role : Student</p>
-                  <p className='text-lg'>Email : sumit123@gmail.com</p>
-                  <p className='text-lg'>Year : 2nd</p>
-                  <p className='text-lg'>Branch: Electronics & Telecommunications</p>
-                  <p className='text-lg'>Division : A</p>
+                  <p className='text-lg'>Email : {email}</p>
+                  <p className='text-lg'>Year : {year}</p>
+                  <p className='text-lg'>Branch: {branch}</p>
+                  <p className='text-lg'>Division : {division}</p>
                 </div>
               </div>
               <button
@@ -60,7 +69,7 @@ const StudentSettings = () => {
                     <input
                       type='email'
                       placeholder='Your Email'
-                      className='w-full border p-2 rounded bg-gray-100 text-black outline-none text-black font-medium'
+                      className='w-full border p-2 rounded bg-gray-100 outline-none text-black font-medium'
                       required
                     />
                   </div>
