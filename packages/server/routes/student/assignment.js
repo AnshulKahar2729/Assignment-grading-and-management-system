@@ -38,7 +38,9 @@ router.post("/", upload.single("file"), async (req, res) => {
             const URL = result.secure_url;
             console.log("URL", URL);
 
-            const assignmentDoc = await Assignment.findById(assignmentId);
+            const assignmentDoc = await Assignment.findById(assignmentId).populate({
+              path: "submissions",
+            });
             if (!assignmentDoc) {
               res.status(500).json({
                 error: "Error finding respective corresponding assignment",
@@ -47,8 +49,17 @@ router.post("/", upload.single("file"), async (req, res) => {
 
             console.log(assignmentDoc);
 
-            let feedback;
+            const previousSubmissionsArr = assignmentDoc.submissions;
+            console.log("previousSubmissionsArr", previousSubmissionsArr);
 
+            let previousSubmissionArrURL = [];
+            for(let i = 0; i<previousSubmissionsArr.length; i++){
+              previousSubmissionArrURL.push(previousSubmissionsArr[i].file);
+            }
+
+            console.log("prevSubmissionURL", previousSubmissionArrURL);
+
+            
             /* if (assignmentDoc.submissions.length > 0) {
               // then go and call flask api for automated feedback
               const latestSubmission =
@@ -61,6 +72,19 @@ router.post("/", upload.single("file"), async (req, res) => {
                 }
               );
             } */
+            let allGrades = null;
+            let grades = null;
+            if(assignmentDoc.submissions.length>0){
+              const {data} = await axios.post("https://anshulkahar2729-ml-assignment-grading.onrender.com/", {
+                currentSubmissionURL : URL,
+                assignmentURL : assignmentDoc.file,
+                previousSubmissionArrURL : previousSubmissionArrURL
+              });
+              console.log("data into nodejs from ML", data);
+
+              allGrades = data;
+              grades = data.grade;
+            }
 
             const endDate = assignmentDoc.endDate;
             console.log("endDate", endDate);
@@ -75,6 +99,7 @@ router.post("/", upload.single("file"), async (req, res) => {
               late: isLate,
               file: URL,
               assignment: assignmentId,
+              grades : grades
             });
 
             const updateAssignmentDoc = await Assignment.findByIdAndUpdate(
@@ -119,6 +144,43 @@ router.post("/", upload.single("file"), async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 });
+
+router.get("/submittedAssignments/:submittedAssignmentId", async (req, res) => {
+  const { submittedAssignmentId } = req.params;
+  try {
+    const submittedAssignmentDoc = await SubmittedAssignment.findById(
+      submittedAssignmentId
+    ).populate({
+      path : "assignment"
+    })
+    if (!submittedAssignmentDoc) {
+      res.status(400).json({ message: "Submitted assignment does not exist" });
+    }
+    res.status(200).json({ submittedAssignment: submittedAssignmentDoc });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/:assignmentId", async(req, res) => {
+  try {
+    const { assignmentId } = req.params;
+    const assignmentDoc = await Assignment.findById(assignmentId).populate({
+      path: "submissions",
+    });
+
+    if (!assignmentDoc) {
+      res.status(400).json({ message: "Assignment does not exist" });
+    }
+    res.status(200).json({ assignment: assignmentDoc });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+})
+
+
 
 module.exports = router;
 

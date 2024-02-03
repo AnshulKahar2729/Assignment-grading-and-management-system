@@ -13,6 +13,8 @@ const profileRoute = require("./routes/profile");
 const teacherAssignmentRoute = require("./routes/teacher/assignment");
 const studentAssignmentRoute = require("./routes/student/assignment");
 const getStudentRoute = require("./routes/student");
+const getSubmittedAssignmentRoute = require("./routes/submittedAssignment");
+const teacherFeedbackRoute = require("./routes/teacher/feedback");
 
 connectDB();
 
@@ -28,12 +30,14 @@ app.use("/api/register", registerRoute);
 app.use("/api/profile", profileRoute);
 app.use("/api/teacher/assignment", teacherAssignmentRoute);
 app.use("/api/student/assignment", studentAssignmentRoute);
+app.use("/api/teacher/feedback", teacherFeedbackRoute);
 app.use("/api/get-student", getStudentRoute);
+app.use("/api/get-submitted-assignment", getSubmittedAssignmentRoute);
 
 app.get("/", (req, res) => {
-  res.json({msg : "Hello World!"});
+  res.json({ msg: "Hello World!" });
 });
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
-})
+});

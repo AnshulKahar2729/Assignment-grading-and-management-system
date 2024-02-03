@@ -3,6 +3,7 @@ const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 const Assignment = require("../../models/Assignment");
 const Teacher = require("../../models/Teacher");
+const SubmittedAssignment = require("../../models/SubmittedAssignment");
 const router = express.Router();
 
 cloudinary.config({
@@ -64,5 +65,42 @@ router.post("/", upload.single("file"), async (req, res) => {
     res.status(500).json({ err: err.message });
   }
 });
+
+router.get("/submittedAssignments/:submittedAssignmentId", async (req, res) => {
+  const { submittedAssignmentId } = req.params;
+  try {
+    const submittedAssignmentDoc = await SubmittedAssignment.findById(
+      submittedAssignmentId
+    ).populate({
+      path : "assignment"
+    })
+    if (!submittedAssignmentDoc) {
+      res.status(400).json({ message: "Submitted assignment does not exist" });
+    }
+    res.status(200).json({ submittedAssignment: submittedAssignmentDoc });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.get("/:assignmentId", async(req, res) => {
+  try {
+    const { assignmentId } = req.params;
+    const assignmentDoc = await Assignment.findById(assignmentId).populate({
+      path: "submissions",
+    });
+
+    if (!assignmentDoc) {
+      res.status(400).json({ message: "Assignment does not exist" });
+    }
+    res.status(200).json({ assignment: assignmentDoc });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message });
+  }
+})
+
+
 
 module.exports = router;
