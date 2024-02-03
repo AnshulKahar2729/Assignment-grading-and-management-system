@@ -48,12 +48,20 @@ def calculateGrade():
 
             # NOW FIND AI ANSWER FOR ALL THE QUESTIONS
             AI_GEN_ANS = []
+            #conert assignmentCleanedTextArr to string
+            assignmentCleanedTextArrStr = ""
             for i in range(len(assignmentCleanedTextArr)):
-                AI_GEN_ANS.append(generateGenAns(assignmentCleanedTextArr[i]))
-            print(AI_GEN_ANS)
+                assignmentCleanedTextArrStr += assignmentCleanedTextArr[i]
+            print(assignmentCleanedTextArrStr)
+
+            AI_GEN_ANS = generateGenAns(assignmentCleanedTextArrStr)
+            print("AI_ANS FROM APP ",AI_GEN_ANS)
+            # for i in range(len(assignmentCleanedTextArr)):
+            #     AI_GEN_ANS.append(generateGenAns(assignmentCleanedTextArr[i]))
+            # print(AI_GEN_ANS)
 
             
-            
+
             # Respond with a JSON object
             return jsonify({"msg" : "hello world"}), 200
 
