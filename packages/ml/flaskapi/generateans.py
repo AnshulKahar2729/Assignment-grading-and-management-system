@@ -13,8 +13,8 @@ model = genai.GenerativeModel('gemini-pro')
 
 def generateGenAns(assignmentCleanedTextArrStr):
     response = model.generate_content(assignmentCleanedTextArrStr)
-    print("AI RESPONSE: ", response)
-    return response
+    print("AI RESPONSE: ", response.text)
+    return response.text
 
 
 
