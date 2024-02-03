@@ -76,35 +76,27 @@ const TeacherSettings = () => {
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor='year' className='block mb-2 mt-5'>
-                      Year
+                   <div>
+                    <label htmlFor='password' className='block mb-2 mt-5'>
+                      Password
                     </label>
                     <input
                       className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='year'
-                      placeholder='Your Year'
+                      type='password'
+                      id='password'
+                      placeholder='New Password'
                     />
-                    <label htmlFor='branch' className='block mb-2 mt-5'>
-                      Branch
+
+                    <label htmlFor='password' className='block mb-2 mt-5'>
+                      Confirm Password
                     </label>
                     <input
                       className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='branch'
-                      placeholder='Your Branch'
+                      type='confirmPassword'
+                      id='confirmPassword'
+                      placeholder='Confirm Password'
                     />
-                    <label htmlFor='division' className='block mb-2 mt-5'>
-                      Division
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='division'
-                      placeholder='Your Division'
-                    />
-                  </div>
+                  </div> 
 
                   <div className='flex flex-row gap-4 w-full my-5'>
                   <button
