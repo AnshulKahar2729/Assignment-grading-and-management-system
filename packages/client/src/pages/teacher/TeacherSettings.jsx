@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
-import MainLayout from '../../layout/MainLayout';
-import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout';
+import React, { useState } from 'react'
+import MainLayout from '../../layout/MainLayout'
+import TeacherSidebarLayout from '../../layout/teacher/TeacherSidebarLayout'
 
-const StudentSettings = () => {
+// const TeacherSettings = () => {
+//   return (
+//     <MainLayout>
+//         <TeacherSidebarLayout/>
+//           <div className=''>Teacher Settings</div>
+//     </MainLayout>
+//   )
+// }
+
+// export default TeacherSettings
+
+const TeacherSettings = () => {
 
   const [edit, setEdit] = useState(false);
 
@@ -12,7 +23,7 @@ const StudentSettings = () => {
 
   return (
     <MainLayout>
-      <StudentSidebarLayout />
+      <TeacherSidebarLayout />
       <div className='bg-[#d6d6d6] p-2 sm:p-3 h-screen overflow-hidden'>
         <div className='bg-white w-full h-full rounded-xl  overflow-y-scroll hideScrollbar'>
           <div
@@ -64,7 +75,8 @@ const StudentSettings = () => {
                       required
                     />
                   </div>
-                  <div>
+
+                   <div>
                     <label htmlFor='password' className='block mb-2 mt-5'>
                       Password
                     </label>
@@ -84,37 +96,7 @@ const StudentSettings = () => {
                       id='confirmPassword'
                       placeholder='Confirm Password'
                     />
-                  </div>
-
-                  <div>
-                    <label htmlFor='year' className='block mb-2 mt-5'>
-                      Year
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='year'
-                      placeholder='Your Year'
-                    />
-                    <label htmlFor='branch' className='block mb-2 mt-5'>
-                      Branch
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='branch'
-                      placeholder='Your Branch'
-                    />
-                    <label htmlFor='division' className='block mb-2 mt-5'>
-                      Division
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='text'
-                      id='division'
-                      placeholder='Your Division'
-                    />
-                  </div>
+                  </div> 
 
                   <div className='flex flex-row gap-4 w-full my-5'>
                   <button
@@ -140,4 +122,4 @@ const StudentSettings = () => {
   );
 };
 
-export default StudentSettings;
+export default TeacherSettings;

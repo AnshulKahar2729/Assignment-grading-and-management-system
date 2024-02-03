@@ -6,64 +6,64 @@ const StudentDashboard = () => {
   return (
     <MainLayout>
       <StudentSidebarLayout />
-      <div className='bg-[#d6d6d6] h-screen overflow-hidden'>
-        <div className='w-full bg-white h-16 flex flex-row items-center justify-between px-5 '>
-          <div className=''>Welcome to EduTrack</div>
-          <div className='flex flex-row gap-4 items-center'>
-            <i className='text-[50px] fa-regular fa-circle-user'></i>
+      <div className=' bg-[#d6d6d6] h-screen overflow-y-scroll hideScrollbar'>
+        <div className='z-50 bg-white h-16 flex flex-row items-center justify-between px-5 '>
+          <div className='hidden sm:block'>Welcome to EduTrack</div>
+          <div className='flex flex-row gap-2 md:gap-4 items-center justify-between sm:justify-end w-full sm:w-fit'>
+            <div className='flex flex-row gap-3 items-center '>
+            <i className='text-[40px] sm:text-[40px] md:text-[50px] fa-regular fa-circle-user'></i>
             <span>Name_Of_Student</span>
-            <button className='py-2 px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
+            </div>
+            <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout
             </button>
           </div>
         </div>
 
-        <div className='p-4 h-[631px] '>
-          <div className='flex flex-col xl:flex-row justify-between h-full overflow-y-scroll hideScrollbar'>
+        <div className=' p-4 h-fit w-full'>
+          <div className='flex flex-col xl:flex-row justify-between h-fit overflow-y-scroll hideScrollbar '>
             <div className='flex flex-col xl:w-[65%] w-full gap-4'>
               <div className='flex flex-col gap-3'>
                 <p className='text-xl font-semibold'>Summary report</p>
                 <section
                  style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}
-                 className=' grid grid-cols-3 bg-[#176DEF] text-white rounded-xl w-full'>
-                  <div className='p-8'>
-                    <p>Assignment</p>
-                    <div className='flex flex-row items-center gap-3'>
-                      <i className='text-5xl text-white fa-solid fa-clipboard-user'></i>
+                 className=' grid grid-cols-1 sm:grid-cols-3 bg-[#176DEF] text-white rounded-xl w-full'>
+                  <div className='m-4 sm:m-8 sm:border-r'>
+                    <p className='text-xl font-semibold'>Assignment</p>
+                    <div className='flex flex-row items-center gap-3 '>
+                      <i className="text-xl sm:text-2xl lg:text-4xl fa-solid fa-folder-open"></i>
                       <p className=''>
-                        <span className='text-5xl'>20</span> <span className='text-3xl'>/</span>{' '}
-                        <span className='text-lg'>20</span>
+                        <span className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>20</span> <span className='text-xl lg:text-3xl'>/</span>{' '}
+                        <span className='text-sm sm:text-base lg:text-lg'>20</span>
                       </p>
                     </div>
-                    <p>Great , you always attending class , keep it up!</p>
                   </div>
-                  <div className='p-8'>
-                    <p>Attendance</p>
-                    <div className='flex flex-row items-center gap-3'>
-                      <i className='text-5xl text-white fa-solid fa-clipboard-user'></i>
-                      <p className=''>
-                        <span className='text-5xl'>20</span> <span className='text-3xl'>/</span>{' '}
-                        <span className='text-lg'>20</span>
+                  <div className='m-4 sm:m-8 sm:border-r'>
+                    <p className='text-xl font-semibold'>Grade</p>
+                    <div className='text-xl sm:text-2xl lg:text-4xl flex flex-row items-center gap-3 '>
+                      <i className="fa-solid fa-graduation-cap"></i>
+                      <p className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>
+                        A+
+                        {/* <span className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>20</span> <span className='text-xl lg:text-3xl'>/</span>{' '}
+                        <span className='text-sm sm:text-base lg:text-lg'>20</span> */}
                       </p>
                     </div>
-                    <p>Great , you always attending class , keep it up!</p>
                   </div>
-                  <div className='p-8'>
-                    <p>Score</p>
+                  <div className='m-4 sm:m-8'>
+                    <p className='text-xl font-semibold'>Score</p>
                     <div className='flex flex-row items-center gap-3'>
-                      <i className='text-5xl text-white fa-solid fa-clipboard-user'></i>
+                      <i className="text-xl sm:text-2xl lg:text-4xl fa-solid fa-star"></i>
                       <p className=''>
-                        <span className='text-5xl'>20</span> <span className='text-3xl'>/</span>{' '}
-                        <span className='text-lg'>20</span>
+                        <span className='text-xl sm:text-2xl md:text-3xl lg:text-5xl'>20</span> <span className='text-xl lg:text-3xl'>/</span>{' '}
+                        <span className='text-sm sm:text-base lg:text-lg'>20</span>
                       </p>
                     </div>
-                    <p>Great , you always attending class , keep it up!</p>
                   </div>
                 </section>
               </div>
-              <div className='flex flex-col gap-3'>
+              <div className='flex flex-col gap-3 '>
                 <p className='text-xl font-semibold'>My Schedule</p>
-                <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-3 bg-white text-black rounded-xl w-full p-4'>
+                <section className='grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-3 bg-white text-black rounded-xl w-full p-4 h-full overflow-y-scroll'>
                   <div>Calendar</div>
 
                   <div className='flex flex-col gap-2'>
