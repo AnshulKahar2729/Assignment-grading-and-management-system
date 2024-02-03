@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 #from helper import extract_text_from_pdf_url,calculate_cosine_similarity
 from extract import extract_text_from_pdf_url
 from similarity import calculate_cosine_similarity
-app = Flask(_name_)
+app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def hello_world():
@@ -40,5 +40,5 @@ def hello_world():
         # If the request is not JSON, respond with an error
         return jsonify({"error": "Invalid Content-Type, expected application/json"}), 415
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(debug=True)
