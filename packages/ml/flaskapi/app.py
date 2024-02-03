@@ -1,4 +1,10 @@
 from flask import Flask, jsonify, request
+from extract import extract_text_from_pdf_url
+from clean import clean_Ans, clean_Ques
+from similarity import calculate_cosine_similarity
+from generateans import generateGenAns
+from convert import convertStrToArr
+
 app = Flask(__name__)
 
 
