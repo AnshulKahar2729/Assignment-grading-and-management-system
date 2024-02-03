@@ -7,7 +7,6 @@ from convert import convertStrToArr
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=['POST'])
 def calculateGrade():
      if request.is_json:
@@ -46,6 +45,12 @@ def calculateGrade():
             # plagarismScore will be a float value between 0 and 1
             relativePlagirismScore = (plagirismScore*10)
             print(relativePlagirismScore)
+
+            # NOW FIND AI ANSWER FOR ALL THE QUESTIONS
+            AI_GEN_ANS = []
+            for i in range(len(assignmentCleanedTextArr)):
+                AI_GEN_ANS.append(generateGenAns(assignmentCleanedTextArr[i]))
+            print(AI_GEN_ANS)
 
             
 
