@@ -8,6 +8,8 @@ router.get("/", async (req, res) => {
             path : "teacherComments"
         }).populate({
             path : "assignment"
+        }).populate({
+            path : "submittedBy"
         })
         res.status(200).json({submittedAssignments});
     }catch(err){
