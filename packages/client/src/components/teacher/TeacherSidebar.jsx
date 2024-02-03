@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/EduTrack.png';
+
 
 const NAV = [
   {
@@ -21,6 +22,7 @@ const NAV = [
 ];
 
 const TeacherSidebar = () => {
+  const navigate = useNavigate(); 
   const [headerOn,setHeaderOn] = useState(false);
   const [selectedItem, setSelectedItem] = useState(() => {
     const storedSelected = localStorage.getItem('selectedNavItem');
@@ -45,6 +47,16 @@ const TeacherSidebar = () => {
   useEffect(() => {
   }, [selectedItem]);
 
+  function handleLogout() {
+    let result = window.confirm("are you sure?")
+    if(result){
+      
+    localStorage.removeItem('token');
+    navigate('/')
+    console.log('Logged Out as a teacher')
+    }
+    
+}
 
 
   return (
@@ -72,7 +84,7 @@ const TeacherSidebar = () => {
           </Link>
         ))}
       </div>
-      <div className='flex gap-4 px-6 py-3 items-center cursor-pointer'>
+      <div onClick={handleLogout} className='flex gap-4 px-6 py-3 items-center cursor-pointer'>
         <i className='fa-solid fa-right-from-bracket fa-rotate-180'></i>
         <span className='sm:hidden lg:flex'><p>Log Out</p></span>
       </div>
