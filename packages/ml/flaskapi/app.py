@@ -31,13 +31,13 @@ def calculateGrade():
             print("assignmentUncleanedText from app", assignmentUncleanedText)
 
             # clean the text
-            currentCleanedText = clean_Ans(currentUncleanedText)
+            currentCleanedText = currentUncleanedText
             print("currentCleanedText from app", currentCleanedText)
             assignmentCleanedTextArr = clean_Ques(assignmentUncleanedText)
             print("assignmentCleanedTextArr from app", assignmentCleanedTextArr)
             prevCleanedText = ""
             for i in range(len(previousUncleanedArrText)):
-                prevCleanedText += clean_Ans(previousUncleanedArrText[i])
+                prevCleanedText += previousUncleanedArrText[i]
             print("prevCleanedText from app ", prevCleanedText)
 
             #CHECK FOR PLAGIARISM
@@ -47,43 +47,10 @@ def calculateGrade():
             relativePlagirismScore = (plagirismScore*10)
             print(relativePlagirismScore)
 
-            # NOW FIND AI ANSWER FOR ALL THE QUESTIONS
-            AI_GEN_ANS = []
-            for i in range(len(assignmentCleanedTextArr)):
-                AI_GEN_ANS.append(generateGenAns(assignmentCleanedTextArr[i]))
-            print(AI_GEN_ANS)
-
-            # NOW WE NEED TO convert currentcleanedtext to a list of sentences
-            currentCleanedAnswerArr = convertStrToArr(currentCleanedText)
-            print(currentCleanedAnswerArr)
-
-            # NOW WE NEED TO COMPARE THE AI GENERATED ANSWERS WITH THE CURRENT ANSWERS
-            relevancyScore = []
-            for i in range(len(AI_GEN_ANS)):
-                relevancyScore.append(calculate_cosine_similarity(currentCleanedAnswerArr[i], AI_GEN_ANS[i]))
-
-            print(relevancyScore)
-
-            MEAN_REL_SCORE_WITHOUT_DIVIDE = 0
-            for i in range(len(relevancyScore)):
-                MEAN_REL_SCORE_WITHOUT_DIVIDE += relevancyScore[i]
-
-            MEAN_REL_SCORE = MEAN_REL_SCORE_WITHOUT_DIVIDE/len(relevancyScore)
-            print(MEAN_REL_SCORE)
-
-            # GRAMMER CHECK
-            grammerScore = grammerCheck(currentCleanedText)
-            print(grammerScore)
-            # grammerScore will be a float value between 0 and 1
-            relativeGrammerScore = (grammerScore*10)
-            print(relativeGrammerScore)
-
-            # CALCULATE THE FINAL GRADE
-            FINAL_GRADE = (relativePlagirismScore + MEAN_REL_SCORE + relativeGrammerScore)/3
-            print(FINAL_GRADE)
+            
 
             # Respond with a JSON object
-            return jsonify({"grade": FINAL_GRADE}), 200
+            return jsonify({"msg" : "hello world"}), 200
 
 
 if __name__ == '__main__':

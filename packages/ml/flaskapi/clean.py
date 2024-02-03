@@ -30,3 +30,6 @@ def clean_Ques(assignmentUncleanedText:str) -> list:
     # print(type(questions_array))
 
     return questions_array
+
+def clean_prev(previousUncleanedArrText: list) -> str:
+    pass
