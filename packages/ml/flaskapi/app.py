@@ -1,14 +1,28 @@
-from flask import Flask, jsonify,request
+from flask import Flask, jsonify, request
 
+app = Flask(_name_)
 
-
-
-app = Flask(__name__)
-
-
-@app.route('/')
+@app.route('/', methods=['POST'])
 def hello_world():
-    return jsonify({'message': 'Hello, World!'}), 200
+    if request.is_json:
+        # Get the JSON data from the request
+        body = request.get_json()
 
-if __name__ == '__main__':
-    app.run()
+        # Check if the required keys are present in the JSON data
+        if 'currentSubmission' in body and 'previousSubmission' in body:
+            url1 = body['currentSubmission']
+            url2 = body['previousSubmission']
+            print(url1)
+            print(url2)
+
+            # Respond with a JSON object
+            return jsonify({"url1": url1, "url2": url2}), 200
+        else:
+            # If the required keys are not present, respond with an error
+            return jsonify({"error": "Invalid JSON data"}), 400
+    else:
+        # If the request is not JSON, respond with an error
+        return jsonify({"error": "Invalid Content-Type, expected application/json"}), 415
+
+if _name_ == '_main_':
+    app.run(debug=True)
