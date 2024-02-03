@@ -140,7 +140,7 @@ function RegisterPage() {
                     onChange={(event) => {
                       setYear(event.target.value);
                     }}
-                    className="w-full px-4 py-2 mb-2 border border-gray-400 rounded-md"
+                    className="w-full px-4 py-2 mb-2 border  bg-gray-100 rounded-md outline-none"
                     type="text"
                     id="year"
                     placeholder="Your Year"
@@ -155,7 +155,7 @@ function RegisterPage() {
                     onChange={(event) => {
                       setBranch(event.target.value);
                     }}
-                    className="w-full px-4 py-2 mb-2 border border-gray-400 rounded-md"
+                    className="w-full px-4 py-2 mb-2 border  bg-gray-100 rounded-md outline-none"
                     type="text"
                     id="branch"
                     placeholder="Your Branch"
@@ -170,7 +170,7 @@ function RegisterPage() {
                     onChange={(event) => {
                       setDivision(event.target.value);
                     }}
-                    className="w-full px-4 py-2 mb-2 border border-gray-400 rounded-md"
+                    className="w-full px-4 py-2 mb-2 border  bg-gray-100 rounded-md outline-none"
                     type="text"
                     id="division"
                     placeholder="Your Division"
