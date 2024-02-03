@@ -32,6 +32,13 @@ const LoginPage = () => {
         alert("Logged In Successfully")
       }
       console.log('logged In Successfully')
+      if(data.student){
+        console.log("Logged In as Student")
+        navigate('/dashboard/student')
+    } else{
+        console.log("logged In as Teacher")
+        navigate('/dashboard/teacher')
+    }
 
     } catch (error) {
       console.log(error);
