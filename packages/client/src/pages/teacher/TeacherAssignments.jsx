@@ -15,7 +15,7 @@ const TeacherAssignments = () => {
   return (
     <MainLayout>
         <TeacherSidebarLayout/>
-          <div className='bg-gray-200 flex gap-4 p-4 flex-col md:flex-row'>
+          <div className='bg-[#d6d6d6] flex gap-4 p-4 flex-col md:flex-row'>
             
             <div className='lg:w-[50%] h-full w-full rounded-lg bg-white flex flex-col gap-3 '>
               <p
