@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     });
 
     const token = jwt.sign({ id: studentDoc._id, role : "student" }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
 
     res.status(201).json({ token, student: studentDoc });
