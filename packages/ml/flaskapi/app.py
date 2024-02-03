@@ -61,6 +61,8 @@ def calculateGrade():
             # print(AI_GEN_ANS)
 
             
+            relevancyScore = calculate_cosine_similarity(currentCleanedText, AI_GEN_ANS)
+            print("relevancyScore in app", relevancyScore)
 
             # Respond with a JSON object
             return jsonify({"msg" : "hello world"}), 200
