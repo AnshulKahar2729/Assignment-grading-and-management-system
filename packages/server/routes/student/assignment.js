@@ -83,7 +83,7 @@ router.post("/", upload.single("file"), async (req, res) => {
               console.log("data into nodejs from ML", data);
 
               allGrades = data;
-              grades = data.grades;
+              grades = data.grade;
             }
 
             const endDate = assignmentDoc.endDate;
