@@ -29,13 +29,18 @@ router.get("/", async (req, res) => {
     }
 
     if (payload.role === "student") {
-      const studentDoc = await Student.findById(payload.id);
+      const studentDoc = await Student.findById(payload.id).populate({
+        path: "submittedAssignment",
+      });
       if (!studentDoc) {
         return res.status(400).json({ message: "Student does not exist" });
       }
       return res.status(200).json({ student: studentDoc });
     } else if (payload.role === "teacher") {
-      const teacherDoc = await Teacher.findById(payload.id);
+      // Populate uploadedAssignment
+      const teacherDoc = await Teacher.findById(payload.id).populate({
+        path: "uploadedAssignment",
+      });
       if (!teacherDoc) {
         return res.status(400).json({ message: "Teacher does not exist" });
       }
