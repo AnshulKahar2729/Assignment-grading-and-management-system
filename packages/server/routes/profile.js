@@ -43,6 +43,9 @@ router.get("/", async (req, res) => {
         // populate submission
         populate: {
           path: "submissions",
+          populate : {
+            path : "assignment"
+          }
         },
       });
       if (!teacherDoc) {
