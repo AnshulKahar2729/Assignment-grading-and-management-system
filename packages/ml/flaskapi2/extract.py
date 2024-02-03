@@ -31,4 +31,3 @@ def extract_text_from_pdf_url(pdf_url: str) -> str:
             os.remove('temp.pdf')
         except OSError:
             pass
-

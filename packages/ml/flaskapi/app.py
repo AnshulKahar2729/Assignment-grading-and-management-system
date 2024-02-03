@@ -1,67 +1,84 @@
 from flask import Flask, jsonify, request
-#from helper import extract_text_from_pdf_url,calculate_cosine_similarity
-from extract import extract_text_from_pdf_url
-from similarity import calculate_cosine_similarity
 app = Flask(__name__)
 
+
 @app.route('/', methods=['POST'])
-def hello_world():
-    if request.is_json:
+def calculateGrade():
+     if request.is_json:
         # Get the JSON data from the request
         body = request.get_json()
 
-        # Check if the required keys are present in the JSON data
-        if 'currentSubmission' in body and 'previousSubmission' in body:
-            cursuburl = body['currentSubmission']
-            prevsuburl = body['previousSubmission']
-            print(cursuburl)
-            print(prevsuburl)
+        if 'currentSubmissionURL' in body and 'previousSubmissionArrURL' in body and 'assignmentURL' in body:
+            currentSubmissionURL = body['currentSubmissionURL']  # contains answer
+            previousSubmissionArrURL = body['previousSubmissionArrURL']  # conntains answer 
+            assignmentURL = body['assignmentURL']    # contains question
 
-            # Extract text from the PDF URLs
-            cursubtext = extract_text_from_pdf_url(cursuburl)
-            print(cursubtext)
-            prevsubtext = extract_text_from_pdf_url(prevsuburl)
-            print(prevsubtext)
+            # Extract uncleanedtext from the PDF URLs
+            currentUncleanedText = extract_text_from_pdf_url(currentSubmissionURL)
+            print(currentUncleanedText)
+            assignmentUncleanedText = extract_text_from_pdf_url(assignmentURL)
+            print(assignmentUncleanedText)
+            previousUncleanedArrText = []
+            for i in range(len(previousSubmissionArrURL)):
+                previousUncleanedArrText.append(extract_text_from_pdf_url(previousSubmissionArrURL[i]))
 
-            # Calculate the cosine similarity
-            plagirismScore = calculate_cosine_similarity(cursubtext, prevsubtext)
+            print(assignmentUncleanedText)
+
+            # clean the text
+            currentCleanedText = clean_Ans(currentUncleanedText)
+            print(currentCleanedText)
+            assignmentCleanedTextArr = clean_Ques(assignmentUncleanedText)
+            print(assignmentCleanedTextArr)
+            prevCleanedText = ""
+            for i in range(len(previousUncleanedArrText)):
+                prevCleanedText += clean_Ans(previousUncleanedArrText[i])
+            print(prevCleanedText)
+
+            #CHECK FOR PLAGIARISM
+            plagirismScore = calculate_cosine_similarity(currentCleanedText, prevCleanedText)
             print(plagirismScore)
+            # plagarismScore will be a float value between 0 and 1
             relativePlagirismScore = (plagirismScore*10)
+            print(relativePlagirismScore)
 
-            
+            # NOW FIND AI ANSWER FOR ALL THE QUESTIONS
+            AI_GEN_ANS = []
+            for i in range(len(assignmentCleanedTextArr)):
+                AI_GEN_ANS.append(generateGenAns(assignmentCleanedTextArr[i]))
+            print(AI_GEN_ANS)
+
+            # NOW WE NEED TO convert currentcleanedtext to a list of sentences
+            currentCleanedAnswerArr = convertStrToArr(currentCleanedText)
+            print(currentCleanedAnswerArr)
+
+            # NOW WE NEED TO COMPARE THE AI GENERATED ANSWERS WITH THE CURRENT ANSWERS
+            relevanyScore = []
+            for i in range(len(AI_GEN_ANS)):
+                relevanyScore.append(calculate_cosine_similarity(currentCleanedAnswerArr[i], AI_GEN_ANS[i]))
+
+            print(relevanyScore)
+
+            MEAN_REL_SCORE_WITHOUT_DIVIDE = 0
+            for i in range(len(relevanyScore)):
+                MEAN_REL_SCORE_WITHOUT_DIVIDE += relevanyScore[i]
+
+            MEAN_REL_SCORE = MEAN_REL_SCORE_WITHOUT_DIVIDE/len(relevanyScore)
+            print(MEAN_REL_SCORE)
+
+            # GRAMMER CHECK
+            grammerScore = grammerCheck(currentCleanedText)
+            print(grammerScore)
+            # grammerScore will be a float value between 0 and 1
+            relativeGrammerScore = (grammerScore*10)
+            print(relativeGrammerScore)
+
+            # CALCULATE THE FINAL GRADE
+            FINAL_GRADE = (relativePlagirismScore + MEAN_REL_SCORE + relativeGrammerScore)/3
+            print(FINAL_GRADE)
 
             # Respond with a JSON object
-            
-            return jsonify({"message":"hello eo kaam"}), 200
-        else:
-            # If the required keys are not present, respond with an error
-            return jsonify({"error": "Invalid JSON data"}), 400
-    else:
-        # If the request is not JSON, respond with an error
-        return jsonify({"error": "Invalid Content-Type, expected application/json"}), 415
+            return jsonify({"grade": FINAL_GRADE}), 200
 
 
-# extraction
-@app.route('/extract', methods=['POST'])
-def extract_text():
-    if request.is_json:
-        # Get the JSON data from the request
-        body = request.get_json()
-
-        # Check if the required keys are present in the JSON data
-        if 'pdfUrl' in body:
-            pdf_url = body['pdfUrl']
-
-            # Extract text from the PDF URL
-            pdf_text = extract_text_from_pdf_url(pdf_url)
-
-            # Respond with a JSON object
-            return jsonify({"pdfText": pdf_text}), 200
-        else:
-            # If the required keys are not present, respond with an error
-            return jsonify({"error": "Invalid JSON data"}), 400
-    else:
-        # If the request is not JSON, respond with an error
-        return jsonify({"error": "Invalid Content-Type, expected application/json"}), 415
-if __name__ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
