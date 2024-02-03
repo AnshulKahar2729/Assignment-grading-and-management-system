@@ -25,7 +25,7 @@ router.post("/", upload.single("file"), async (req, res) => {
     const result = await cloudinary.uploader
       .upload_stream(
         {
-          /* Cloudinary options */
+          resource_type: "raw",
         },
         async (error, result) => {
           if (error) {

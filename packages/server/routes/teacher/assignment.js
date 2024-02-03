@@ -20,7 +20,9 @@ router.post("/", upload.single("file"), async (req, res) => {
     const { title, teacherId, endDate } = req.body;
 
     const result = await cloudinary.uploader
-      .upload_stream({}, async (error, result) => {
+      .upload_stream({
+        resource_type: "raw",
+      }, async (error, result) => {
         if (error) {
           console.error(error);
           res.status(500).json({ error });
