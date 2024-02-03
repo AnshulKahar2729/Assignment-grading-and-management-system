@@ -4,7 +4,9 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     try{
-        const submittedAssignments = await SubmittedAssignment.find();
+        const submittedAssignments = await SubmittedAssignment.find().populate({
+            path : "teacherComments"
+        })
         res.status(200).json({submittedAssignments});
     }catch(err){
         console.error(err);
