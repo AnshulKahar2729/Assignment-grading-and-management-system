@@ -64,6 +64,27 @@ const StudentSettings = () => {
                       required
                     />
                   </div>
+                  <div>
+                    <label htmlFor='password' className='block mb-2 mt-5'>
+                      Password
+                    </label>
+                    <input
+                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
+                      type='password'
+                      id='password'
+                      placeholder='New Password'
+                    />
+
+                    <label htmlFor='password' className='block mb-2 mt-5'>
+                      Confirm Password
+                    </label>
+                    <input
+                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
+                      type='confirmPassword'
+                      id='confirmPassword'
+                      placeholder='Confirm Password'
+                    />
+                  </div>
 
                   <div>
                     <label htmlFor='year' className='block mb-2 mt-5'>
