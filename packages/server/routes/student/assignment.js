@@ -77,6 +77,22 @@ router.post("/", upload.single("file"), async (req, res) => {
               assignment: assignmentId,
             });
 
+            const updateAssignmentDoc = await Assignment.findByIdAndUpdate(
+              assignmentId,
+              {
+                $push: { submissions: submittedAssignmentDoc._id },
+              },
+              { new: true }
+            );
+
+            if (!updateAssignmentDoc) {
+              res.status(500).json({
+                error: "Error finding respective corresponding assignment",
+              });
+            }
+
+            console.log("updateAssignmentDoc", updateAssignmentDoc);
+
             console.log("submittedAssignmentDoc", submittedAssignmentDoc);
 
             const studentDoc = await Student.findByIdAndUpdate(
