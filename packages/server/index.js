@@ -13,6 +13,7 @@ const profileRoute = require("./routes/profile");
 const teacherAssignmentRoute = require("./routes/teacher/assignment");
 const studentAssignmentRoute = require("./routes/student/assignment");
 const getStudentRoute = require("./routes/student");
+const getSubmittedAssignmentRoute = require("./routes/submittedAssignment");
 
 connectDB();
 
@@ -29,6 +30,7 @@ app.use("/api/profile", profileRoute);
 app.use("/api/teacher/assignment", teacherAssignmentRoute);
 app.use("/api/student/assignment", studentAssignmentRoute);
 app.use("/api/get-student", getStudentRoute);
+app.use("/api/get-submitted-assignment", getSubmittedAssignmentRoute);
 
 app.get("/", (req, res) => {
   res.json({msg : "Hello World!"});
