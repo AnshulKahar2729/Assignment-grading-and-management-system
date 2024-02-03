@@ -14,7 +14,7 @@ function Updates({ selectedDate, Assignments }) {
   console.log('Assignments ---> ', Assignments);
 
   return (
-    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll '>
+    <div className='flex flex-col gap-2 max-h-[315px] overflow-y-scroll '>
       {Assignments.map((item, i) => {
         const assignmentDate = new Date(item.date);
         const formattedAssignmentDate = assignmentDate.toLocaleDateString('en-US', options);

@@ -76,7 +76,7 @@ const TeacherAssignments = () => {
                   </div>
                   
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>
@@ -92,7 +92,7 @@ const TeacherAssignments = () => {
                     </p>
                   </div>
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>
@@ -108,7 +108,7 @@ const TeacherAssignments = () => {
                     </p>
                   </div>
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>
@@ -124,7 +124,7 @@ const TeacherAssignments = () => {
                     </p>
                   </div>
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>
@@ -140,7 +140,7 @@ const TeacherAssignments = () => {
                     </p>
                   </div>
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>
@@ -156,7 +156,7 @@ const TeacherAssignments = () => {
                     </p>
                   </div>
                   <button className='flex gap-2 items-center text-white p-2 rounded-md' style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}>
-                    <i class="fa-solid fa-message"></i> 
+                    <i className="fa-solid fa-message"></i> 
                     Give FeedBack
                   </button>
                 </div>

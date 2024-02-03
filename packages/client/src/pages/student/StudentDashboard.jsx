@@ -9,7 +9,6 @@ const StudentDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const {user} = useContext(UserContext);
-  const name = user.student.name;
   const Assignment = user.student.submittedAssignment;
   
   const handleDateSelect = (date) => {
@@ -27,12 +26,12 @@ const StudentDashboard = () => {
     <MainLayout>
       <StudentSidebarLayout />
       <div className=' bg-[#d6d6d6] h-screen overflow-y-scroll hideScrollbar'>
-        <div className='z-50 bg-white h-16 flex flex-row items-center justify-between px-5 '>
+        <div className='hidden z-50 bg-white h-16 sm:flex flex-row items-center justify-between px-5 '>
           <div className='hidden sm:block'>Welcome to EduTrack</div>
           <div className='flex flex-row gap-2 md:gap-4 items-center justify-between sm:justify-end w-full sm:w-fit'>
             <div className='flex flex-row gap-3 items-center '>
             <i className='text-[40px] text-gray-400 fa-regular fa-circle-user'></i>
-            <span className='font-semibold'>{name}</span>
+            <span className='font-semibold'>{user.student.name}</span>
             </div>
             <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout
@@ -41,10 +40,9 @@ const StudentDashboard = () => {
         </div>
 
         <div className=' p-4 h-fit w-full'>
-          <div className='flex flex-col xl:flex-row justify-between h-fit overflow-y-scroll hideScrollbar '>
+          <div className='flex flex-col xl:flex-row justify-between h-fit overflow-y-scroll hideScrollbar gap-4'>
             <div className='flex flex-col xl:w-[65%] w-full gap-4'>
               <div className='flex flex-col gap-3'>
-                <p className='text-xl font-semibold'>Summary report</p>
                 <section
                  style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}}
                  className=' grid grid-cols-1 sm:grid-cols-3 bg-[#176DEF] text-white rounded-xl w-full'>
@@ -80,15 +78,14 @@ const StudentDashboard = () => {
                   </div>
                 </section>
               </div>
-              <div className='flex flex-col gap-3 '>
-                <p className='text-xl font-semibold'>My Schedule</p>
+              <div className='flex  '>
                 <section className='grid grid-cols-1 2xl:grid-cols-2 gap-4 lg:gap-3 bg-white text-black rounded-xl w-full p-4 h-full'>
                   <div className=''><Calendar onSelectDate={handleDateSelect} Assignments={Assignments}/></div>
                   <div className='border-l p-3 border-gray-200'><Deadline selectedDate={selectedDate} Assignments={Assignments}/></div>
                 </section>
               </div>
             </div>
-            <div className='mt-9 w-full xl:w-[33.5%] bg-white rounded-xl max-h-[700px] px-4 py-9 flex flex-col gap-4'>
+            <div className=' w-full xl:w-[33.5%] bg-white rounded-xl max-h-[700px] px-4 py-9 flex flex-col gap-4'>
               <section className='flex flex-col gap-3 '>
                 <p className='text-[16px] font-semibold'>My Teachers</p>
                 <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
@@ -101,7 +98,7 @@ const StudentDashboard = () => {
                         <span>Java,Javascript</span>{' '}
                       </p>
                     </div>
-                    <i class='fa-solid fa-message'></i>
+                    <i className='fa-solid fa-message'></i>
                   </div>
                   <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
@@ -112,7 +109,7 @@ const StudentDashboard = () => {
                         <span>Java,Javascript</span>{' '}
                       </p>
                     </div>
-                    <i class='fa-solid fa-message'></i>
+                    <i className='fa-solid fa-message'></i>
                   </div>
                   <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
@@ -123,7 +120,7 @@ const StudentDashboard = () => {
                         <span>Java,Javascript</span>{' '}
                       </p>
                     </div>
-                    <i class='fa-solid fa-message'></i>
+                    <i className='fa-solid fa-message'></i>
                   </div>
                 </div>
               </section>
@@ -139,7 +136,7 @@ const StudentDashboard = () => {
                         <span>Java,Javascript</span>{' '}
                       </p>
                     </div>
-                    <i class='fa-solid fa-message'></i>
+                    <i className='fa-solid fa-message'></i>
                   </div>
                   <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200 '>
                     <div className='flex gap-4 items-center'>
@@ -150,7 +147,7 @@ const StudentDashboard = () => {
                         <span>Java,Javascript</span>{' '}
                       </p>
                     </div>
-                    <i class='fa-solid fa-message'></i>
+                    <i className='fa-solid fa-message'></i>
                   </div>
                 </div>
               </section>
