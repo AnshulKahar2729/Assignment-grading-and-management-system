@@ -5,7 +5,10 @@ import StudentAssignments from "../pages/student/StudentAssignments";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import StudentParticularAssignment from "../pages/student/StudentParticularAssignment";
 import StudentSettings from "../pages/student/StudentSettings";
+import TeacherAssignments from "../pages/teacher/TeacherAssignments";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
+import TeacherParticularAssignment from "../pages/teacher/TeacherParticularAssignment";
+import TeacherSettings from "../pages/teacher/TeacherSettings";
 import TryAPI from "../tryAPI/TryAPI";
 
 const routes = [
@@ -21,11 +24,22 @@ const routes = [
     path: "/login",
     component: <LoginPage />,
   },
-
   // teacher 
   {
     path: "/dashboard/teacher",
     component: <TeacherDashboard />,
+  },
+  {
+    path: "/dashboard/teacher/assignments",
+    component: <TeacherAssignments />,
+  },
+  {
+    path: "/dashboard/teacher/assignments/ass1",
+    component: <TeacherParticularAssignment />,
+  },
+  {
+    path: "/dashboard/teacher/settings",
+    component: <TeacherSettings />,
   },
 
   // student 
