@@ -26,7 +26,7 @@ const submittedAssignmentSchema = new Schema({
     ref: "Feedback",
   },
   automatedFeedback: {
-    type: [String],
+    type: Object,
   },
   assignment: {
     type: mongoose.Schema.Types.ObjectId,
@@ -36,7 +36,6 @@ const submittedAssignmentSchema = new Schema({
   grades: {
     type: String,
     // required: true,
-    default : "5",
   },
 });
 

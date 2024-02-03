@@ -38,7 +38,9 @@ router.post("/", upload.single("file"), async (req, res) => {
             const URL = result.secure_url;
             console.log("URL", URL);
 
-            const assignmentDoc = await Assignment.findById(assignmentId);
+            const assignmentDoc = await Assignment.findById(assignmentId).populate({
+              path: "submissions",
+            });
             if (!assignmentDoc) {
               res.status(500).json({
                 error: "Error finding respective corresponding assignment",
@@ -47,8 +49,17 @@ router.post("/", upload.single("file"), async (req, res) => {
 
             console.log(assignmentDoc);
 
-            let feedback;
+            const previousSubmissionsArr = assignmentDoc.submissions;
+            console.log("previousSubmissionsArr", previousSubmissionsArr);
 
+            let previousSubmissionArrURL = [];
+            for(let i = 0; i<previousSubmissionsArr.length; i++){
+              previousSubmissionArrURL.push(previousSubmissionsArr[i].file);
+            }
+
+            console.log("prevSubmissionURL", previousSubmissionArrURL);
+
+            
             /* if (assignmentDoc.submissions.length > 0) {
               // then go and call flask api for automated feedback
               const latestSubmission =
@@ -61,6 +72,18 @@ router.post("/", upload.single("file"), async (req, res) => {
                 }
               );
             } */
+            let allGrades = null;
+            let grades = null;
+            if(assignmentDoc.submissions.length>0){
+              const {data} = await axios.post("https://anshulkahar2729-ml-assignment-grading.onrender.com/", {
+                currentSubmissionURL : URL,
+                assignmentURL : assignmentDoc.file,
+                previousSubmissionArrURL : previousSubmissionArrURL
+              });
+
+              allGrades = data;
+              grades = data.grades;
+            }
 
             const endDate = assignmentDoc.endDate;
             console.log("endDate", endDate);
@@ -75,6 +98,7 @@ router.post("/", upload.single("file"), async (req, res) => {
               late: isLate,
               file: URL,
               assignment: assignmentId,
+              grades : grades
             });
 
             const updateAssignmentDoc = await Assignment.findByIdAndUpdate(

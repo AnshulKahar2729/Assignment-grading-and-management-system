@@ -16,3 +16,4 @@ requests==2.31.0
 python-dotenv==1.0.0
 google-generativeai==0.3.2
 ipython==8.15.0
+Flask-Cors==1.10.3

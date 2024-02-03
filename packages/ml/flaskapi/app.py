@@ -4,8 +4,10 @@ from clean import clean_Ans, clean_Ques
 from similarity import calculate_cosine_similarity
 from generateans import generateGenAns
 from convert import convertStrToArr
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['POST'])
 def calculateGrade():
