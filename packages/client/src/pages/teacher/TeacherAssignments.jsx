@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import TeacherSidebarLayout from '../../layout/teacher/TeacherSidebarLayout'
 import { Button } from 'flowbite-react';
@@ -6,6 +6,7 @@ import MyModal from '../../components/teacher/PostAssignmentModal';
 import { Link } from 'react-router-dom';
 
 const TeacherAssignments = () => {
+  
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {

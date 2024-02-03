@@ -2,12 +2,32 @@ import React, { useContext, useEffect, useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import TeacherSidebarLayout from '../../layout/teacher/TeacherSidebarLayout';
 import { UserContext } from '../../store/userContext';
+import Calendar from '../../components/_commons/calendar/TeacherCalendar';
+import Updates from '../../components/_commons/calendar/Updates';
 
 const TeacherDashboard = () => {
 
-  const {user} = useContext(UserContext);
 
-  console.log('Teacher Data -> ',user)
+  // console.log('Teacher Data -> ',user.teacher)
+
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const {user} = useContext(UserContext);
+  const name = user.teacher.name;
+  const Assignment = user.teacher.uploadedAssignment;
+  
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
+
+  const Assignments = Assignment.map(assignment => ({
+    title: assignment.title,
+    date: new Date(assignment.startDate).toLocaleDateString(),
+    completed: true,
+    file:assignment.file,
+  }));
+
+  console.log('User ----------> ',user)
 
   return (
     <MainLayout>
@@ -18,7 +38,7 @@ const TeacherDashboard = () => {
           <div className='flex flex-row gap-2 md:gap-4 items-center justify-between sm:justify-end w-full sm:w-fit'>
             <div className='flex flex-row gap-3 items-center '>
               <i className='text-[40px] sm:text-[40px] md:text-[50px] fa-regular fa-circle-user'></i>
-              <span>Name_Of_Teacher</span>
+              <span>{name}</span>
             </div>
             <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout
@@ -62,7 +82,7 @@ const TeacherDashboard = () => {
                       <i className='text-[50px] fa-solid fa-book-open'></i>
                     </div>
                     <div className='flex flex-col items-center text-black'>
-                      <p className='text-4xl font-semibold'>30</p>
+                      <p className='text-4xl font-semibold'>{Assignment.length}</p>
                       <p className='font-semibold'>Assignments</p>
                     </div>
                   </div>
@@ -157,13 +177,12 @@ const TeacherDashboard = () => {
               </div>
             </div>
 
-            <div className='flex flex-col gap-3 w-full xl:w-[34%]'>
-              <p className='text-xl font-semibold'>My Schedule</p>
+            <div className='flex  w-full xl:w-[34%]'>
               <div className='flex flex-col sm:flex-row xl:flex-col gap-4 lg:gap-3 justify-between bg-white text-black rounded-xl w-full p-4 h-full overflow-y-scroll hideScrollbar'>
-                <section className='w-full sm:w-1/2 xl:w-full'>Calendar</section>
+                <section className='w-full sm:w-1/2 xl:w-full'><Calendar onSelectDate={handleDateSelect} Assignments={Assignments}/></section>
 
                 <section className='w-full sm:w-1/2 xl:w-full flex flex-col gap-2'>
-                  <div className='p-3 flex flex-col gap-3 border-b border-black'>
+                  {/* <div className='p-3 flex flex-col gap-3 border-b border-black'>
                     <p>Assignment 1</p>
                     <p className='flex flex-row justify-between'>
                       <span>Time_of_Post</span> <span>Date_of_Post</span>
@@ -180,7 +199,8 @@ const TeacherDashboard = () => {
                     <p className='flex flex-row justify-between'>
                       <span>Time_of_Post</span> <span>Date_of_Post</span>
                     </p>
-                  </div>
+                  </div> */}
+                  <Updates  selectedDate={selectedDate} Assignments={Assignments}/>
                 </section>
               </div>
             </div>
