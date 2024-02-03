@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Modal from 'react-modal';
+import { UserContext } from '../../store/userContext';
 
 Modal.setAppElement('#root');
 
 
-const MyModal = ({modalIsOpen, setModalIsOpen}) => {
+const MyModal = ({modalIsOpen, setModalIsOpen, id}) => {
+  const {user} = useContext(UserContext);
 
   // modal 
   const openModal = () => {
@@ -20,8 +22,9 @@ const MyModal = ({modalIsOpen, setModalIsOpen}) => {
   
   
   const [file, setFile] = useState(null);
-  const [studentId, setStudentId] = useState('65bd1a7a1425238e3f68a30a');
-  const [assignmentId, setAssignmentId] = useState('65bdf37703b641e849ebb7e2');
+  const [studentId, setStudentId] = useState(user?.student._id);
+  const [assignmentId, setAssignmentId] = useState('65beb504d2a0315617eddbac');
+  // const [assignmentId, setAssignmentId] = useState(id);
 
   const handleFileChange = e => {
     setFile(e.target.files[0]);
@@ -29,7 +32,7 @@ const MyModal = ({modalIsOpen, setModalIsOpen}) => {
 
 //   handle upload 
   const handleUpload = async () => {
-    console.log(file, studentId, assignmentId)
+    console.log(file,"studId: ", studentId,"assId: ", assignmentId)
     try {
       const formData = new FormData();
       formData.append('file', file);

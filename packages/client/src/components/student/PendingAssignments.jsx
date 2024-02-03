@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import MyModal from './SubmitAssignmentModal'
 
-const PendingAssignments = () => {
+const PendingAssignments = ({assignmentId}) => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   function openModal() {
@@ -17,7 +17,7 @@ const PendingAssignments = () => {
         </div>
         
             {/* MODAL  */}
-            <MyModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}/>
+            <MyModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} id={assignmentId}/>
     </div>
   )
 }

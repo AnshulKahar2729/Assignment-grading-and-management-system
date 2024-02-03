@@ -32,6 +32,7 @@ const StudentAssignments = () => {
             {user.student.submittedAssignment.map((item, idx) => (
               <PendingAssignments
               // name={item.name}
+              assignmentId={item._id}
               />
             ))}
 
