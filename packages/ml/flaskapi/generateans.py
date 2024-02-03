@@ -1,8 +1,5 @@
-import pathlib
-import textwrap
 import os
 import google.generativeai as genai
-from IPython.display import display, Markdown
 from dotenv import load_dotenv
 
 # Your API key
@@ -23,7 +20,7 @@ def generateGenAns(assignmentCleanedTextArrElement):
     shortened_response = shorten_response(response, max_length=100)
     # Print the shortened response as plain text
     print(shortened_response)
-    pass
+    return shortened_response
 
 
 
