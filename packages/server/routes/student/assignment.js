@@ -26,6 +26,8 @@ router.post("/", upload.single("file"), async (req, res) => {
       .upload_stream(
         {
           resource_type: "raw",
+          format: req.file.originalname.split('.').pop(), // Extract and include the original file extension
+
         },
         async (error, result) => {
           if (error) {
