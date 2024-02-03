@@ -35,10 +35,10 @@ const studentSchema = new Schema({
     // trim: true,
     enum : ["A", "B", "C"],
   },
-  submittedAssignment: {
+  submittedAssignment: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "SubmittedAssignment",
-  }
+  }]
 });
 
 const Student = model("Student", studentSchema);
