@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout';
 import MainLayout from '../../layout/MainLayout';
-<<<<<<< Updated upstream
 import { UserContext } from '../../store/userContext';
 import Calendar from '../../components/_commons/calendar/StudentCalendar';
 import Deadline from '../../components/_commons/calendar/Deadline';
+import { useNavigate } from 'react-router-dom';
+
 
 const StudentDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const navigate = useNavigate();
 
   const {user} = useContext(UserContext);
   const name = user.student.name;
@@ -23,13 +25,6 @@ const StudentDashboard = () => {
     completed: true,
   }));
   
-
-=======
-import { useNavigate } from 'react-router-dom';
-
-const StudentDashboard = () => {
-  const navigate = useNavigate(); 
-  
   function handleLogout() {
     let result = window.confirm("are you sure?")
     if(result){
@@ -40,7 +35,6 @@ const StudentDashboard = () => {
     }
     
 }
->>>>>>> Stashed changes
   return (
     <MainLayout>
       <StudentSidebarLayout />

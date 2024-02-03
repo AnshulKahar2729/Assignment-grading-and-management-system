@@ -1,10 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainLayout from '../../layout/MainLayout'
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout'
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const StudentParticularAssignment = () => {
   const { id } = useParams();
+  
+  const [assignment, setAssignment] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const assignmentId = id;
+
+  useEffect(() => {
+    async function fetchAssignment() {
+      console.log('fetching..')
+      try {
+        const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/assignment/${assignmentId}`);
+        setAssignment(response.data);
+        console.log(response.data)
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    }
+
+    fetchAssignment();
+
+    // Cleanup function to cancel any pending requests if the component unmounts
+    return () => {};
+  }, [assignmentId]);
+
   return (
     <MainLayout>
       <StudentSidebarLayout />
