@@ -21,7 +21,7 @@ def extract_text_from_pdf_url(pdf_url: str) -> str:
                 page = reader.pages[page_num]
                 pdf_text += page.extract_text()
 
-        return pdf_text
+        return pdf_text.replace('\n', ' ')
     except Exception as e:
         print(f"Error extracting text from {pdf_url}: {e}")
         return ""
@@ -32,6 +32,8 @@ def extract_text_from_pdf_url(pdf_url: str) -> str:
         except OSError:
             pass
 
-result = extract_text_from_pdf_url("https://res.cloudinary.com/dvzx9xowk/raw/upload/v1706965459/o19ncyojglrygd7porrs.pdf")
+result = extract_text_from_pdf_url("https://res.cloudinary.com/dvzx9xowk/raw/upload/v1706952937/i8u9wkoqffvseuvfdizk.pdf")
 
 print(result)
+print(len(result))
+print(type(result))

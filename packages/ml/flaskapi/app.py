@@ -52,17 +52,17 @@ def calculateGrade():
             print(currentCleanedAnswerArr)
 
             # NOW WE NEED TO COMPARE THE AI GENERATED ANSWERS WITH THE CURRENT ANSWERS
-            relevanyScore = []
+            relevancyScore = []
             for i in range(len(AI_GEN_ANS)):
-                relevanyScore.append(calculate_cosine_similarity(currentCleanedAnswerArr[i], AI_GEN_ANS[i]))
+                relevancyScore.append(calculate_cosine_similarity(currentCleanedAnswerArr[i], AI_GEN_ANS[i]))
 
-            print(relevanyScore)
+            print(relevancyScore)
 
             MEAN_REL_SCORE_WITHOUT_DIVIDE = 0
-            for i in range(len(relevanyScore)):
-                MEAN_REL_SCORE_WITHOUT_DIVIDE += relevanyScore[i]
+            for i in range(len(relevancyScore)):
+                MEAN_REL_SCORE_WITHOUT_DIVIDE += relevancyScore[i]
 
-            MEAN_REL_SCORE = MEAN_REL_SCORE_WITHOUT_DIVIDE/len(relevanyScore)
+            MEAN_REL_SCORE = MEAN_REL_SCORE_WITHOUT_DIVIDE/len(relevancyScore)
             print(MEAN_REL_SCORE)
 
             # GRAMMER CHECK
