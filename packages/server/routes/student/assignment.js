@@ -45,9 +45,11 @@ router.post("/", upload.single("file"), async (req, res) => {
               });
             }
 
+            console.log(assignmentDoc);
+
             let feedback;
 
-            if (assignmentDoc.submissions.length > 0) {
+            /* if (assignmentDoc.submissions.length > 0) {
               // then go and call flask api for automated feedback
               const latestSubmission =
                 assignmentDoc.submissions[assignmentDoc.submissions.length - 1];
@@ -58,12 +60,14 @@ router.post("/", upload.single("file"), async (req, res) => {
                   previousSubmission : latestSubmission.file,
                 }
               );
-            }
+            } */
 
             const endDate = assignmentDoc.endDate;
+            console.log("endDate", endDate);
             // check if the assignment is late
 
             const isLate = new Date() > new Date(endDate);
+            console.log("isLate", isLate);
 
             const submittedAssignmentDoc = await SubmittedAssignment.create({
               submittedBy: studentId,
@@ -72,6 +76,24 @@ router.post("/", upload.single("file"), async (req, res) => {
               file: URL,
               assignment: assignmentId,
             });
+
+            const updateAssignmentDoc = await Assignment.findByIdAndUpdate(
+              assignmentId,
+              {
+                $push: { submissions: submittedAssignmentDoc._id },
+              },
+              { new: true }
+            );
+
+            if (!updateAssignmentDoc) {
+              res.status(500).json({
+                error: "Error finding respective corresponding assignment",
+              });
+            }
+
+            console.log("updateAssignmentDoc", updateAssignmentDoc);
+
+            console.log("submittedAssignmentDoc", submittedAssignmentDoc);
 
             const studentDoc = await Student.findByIdAndUpdate(
               studentId,
@@ -85,6 +107,7 @@ router.post("/", upload.single("file"), async (req, res) => {
                 error: "Error finding respective corresponding student",
               });
             }
+            console.log("studentDoc", studentDoc);
 
             res.status(200).json({ URL });
           }
