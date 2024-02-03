@@ -40,6 +40,10 @@ router.get("/", async (req, res) => {
       // Populate uploadedAssignment
       const teacherDoc = await Teacher.findById(payload.id).populate({
         path: "uploadedAssignment",
+        // populate submission
+        populate: {
+          path: "submissions",
+        },
       });
       if (!teacherDoc) {
         return res.status(400).json({ message: "Teacher does not exist" });
