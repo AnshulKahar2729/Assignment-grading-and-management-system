@@ -1,8 +1,10 @@
 import React from 'react'
 import MainLayout from '../../layout/MainLayout'
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout'
+import { useParams } from 'react-router-dom';
 
 const StudentParticularAssignment = () => {
+  const { id } = useParams();
   return (
     <MainLayout>
       <StudentSidebarLayout />

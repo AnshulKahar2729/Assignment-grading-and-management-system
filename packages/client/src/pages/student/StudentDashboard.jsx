@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import StudentSidebarLayout from '../../layout/student/StudentSidebarLayout';
 import MainLayout from '../../layout/MainLayout';
+<<<<<<< Updated upstream
 import { UserContext } from '../../store/userContext';
 import Calendar from '../../components/_commons/calendar/StudentCalendar';
 import Deadline from '../../components/_commons/calendar/Deadline';
@@ -23,6 +24,23 @@ const StudentDashboard = () => {
   }));
   
 
+=======
+import { useNavigate } from 'react-router-dom';
+
+const StudentDashboard = () => {
+  const navigate = useNavigate(); 
+  
+  function handleLogout() {
+    let result = window.confirm("are you sure?")
+    if(result){
+      
+    localStorage.removeItem('token');
+    navigate('/')
+    console.log('Logged Out as a Student')
+    }
+    
+}
+>>>>>>> Stashed changes
   return (
     <MainLayout>
       <StudentSidebarLayout />
@@ -34,7 +52,7 @@ const StudentDashboard = () => {
             <i className='text-[40px] text-gray-400 fa-regular fa-circle-user'></i>
             <span className='font-semibold'>{name}</span>
             </div>
-            <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
+            <button onClick={handleLogout} className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout
             </button>
           </div>

@@ -52,7 +52,7 @@ const routes = [
     component: <StudentAssignments />
   },
   {
-    path: "/dashboard/student/assignments/ass1",
+    path: "/dashboard/student/assignments/:id",
     component: <StudentParticularAssignment />
   },
   {
