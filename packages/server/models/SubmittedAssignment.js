@@ -36,6 +36,7 @@ const submittedAssignmentSchema = new Schema({
   grades: {
     type: String,
     // required: true,
+    default : 8
   },
 });
 
