@@ -69,7 +69,7 @@ function RegisterPage() {
     <div className="relative flex flex-col md:flex-row pt-4 sm:pt-16 md:pt-0 h-full">
       <div className="md:flex-1 bg-white flex flex-col items-center justify-center p-4">
         <div className="max-w-md w-full">
-          <Link href='/'>
+          <Link to='/'>
             <img src={Logo} className='h-20 ' alt="none" />
           </Link>
           <div className='m-2'>
