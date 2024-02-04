@@ -9,8 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 const StudentDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const { user, again, setAgain } = useContext(UserContext);
   const navigate = useNavigate();
+
+  
+  const { user, again, setAgain } = useContext(UserContext);
+
   // const
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const StudentDashboard = () => {
   const name = user.student.name;
   const Assignment = user.student.submittedAssignment;
 
-  const handleDateSelect = date => {
+  const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
 
