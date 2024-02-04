@@ -5,6 +5,7 @@ import StudentAssignments from "../pages/student/StudentAssignments";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import StudentParticularAssignment from "../pages/student/StudentParticularAssignment";
 import StudentSettings from "../pages/student/StudentSettings";
+import StudentsList from "../pages/teacher/StudentsList";
 import TeacherAssignments from "../pages/teacher/TeacherAssignments";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import TeacherParticularAssignment from "../pages/teacher/TeacherParticularAssignment";
@@ -45,6 +46,10 @@ const routes = [
   {
     path: "/dashboard/teacher/assignments/submission/:id",
     component: <TeacherSubmissionPage />,
+  },
+  {
+    path: "/dashboard/teacher/studentslist",
+    component: <StudentsList />,
   },
   // student 
   {

@@ -29,11 +29,11 @@ const TeacherAssignments = () => {
   // loading assignment by fetch
   useEffect(() => {
     async function fetchAssignment() {
-      console.log('fetching..')
       try {
         const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/api/get-submitted-assignment`);
-        setAssignment(response.data.submittedAssignments);
-        console.log('api', response.data.submittedAssignments)
+        setAssignment(response.data);
+        console.log('api', response.data)
+        console.log(response.data.submittedAssignments)
         // setLoading(false);
       } catch (error) {
         // setLoading(false);
@@ -91,11 +91,11 @@ const TeacherAssignments = () => {
               </p>
 
               <div className='py-3 xl:px-16 h-full'>
-                {user.teacher.uploadedAssignment.map((item)=> (
+                {assignment?.submittedAssignments.map((item)=> (
                     <RecentSubmissions
-                      // studentName={}
-                      // assignmentTitle={assignment.assignment.title}
-                      // id={assignment._id}
+                      studentName={item.submittedBy.title}
+                      assignmentTitle={item.assignment.title}
+                      id={item._id}
                     />
                 ))}
               </div>
