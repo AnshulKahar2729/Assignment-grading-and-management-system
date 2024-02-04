@@ -11,11 +11,6 @@ const TeacherSettings = () => {
   const role = 'Teacher';
   const email = user.teacher.email;
 
-  const [edit, setEdit] = useState(false);
-
-  const handleEditChanges = e => {
-    e.preventDefault();
-  };
 
   return (
     <MainLayout>
@@ -40,74 +35,8 @@ const TeacherSettings = () => {
                   <p className='text-lg'>Email : {email}</p>
                 </div>
               </div>
-              <button
-                onClick={() => setEdit(!edit)}
-                className='text-black bg-[#ffffff] hover:bg-[#e5e5e5] h-fit py-2 px-4 text-base font-semibold rounded-md'
-              >
-                Edit
-              </button>
             </div>
-            <div className='text-white'>
-              {edit ? (
-                <form onSubmit={handleEditChanges}>
-                  <div className='mb-4'>
-                    <label className='block text-sm font-medium'>Full Name</label>
-                    <input
-                      type='text'
-                      placeholder='Your Name'
-                      className='w-full border p-2 rounded bg-gray-100 text-black outline-none text-black font-medium'
-                      required
-                    />
-                  </div>
-                  <div className='mb-4'>
-                    <label className='block text-sm font-medium'>Email</label>
-                    <input
-                      type='email'
-                      placeholder='Your Email'
-                      className='w-full border p-2 rounded bg-gray-100 text-black outline-none text-black font-medium'
-                      required
-                    />
-                  </div>
-
-                   <div>
-                    <label htmlFor='password' className='block mb-2 mt-5'>
-                      Password
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='password'
-                      id='password'
-                      placeholder='New Password'
-                    />
-
-                    <label htmlFor='password' className='block mb-2 mt-5'>
-                      Confirm Password
-                    </label>
-                    <input
-                      className='w-full px-4 py-2 mb-2 border border-gray-400 rounded-md outline-none text-black font-medium'
-                      type='confirmPassword'
-                      id='confirmPassword'
-                      placeholder='Confirm Password'
-                    />
-                  </div> 
-
-                  <div className='flex flex-row gap-4 w-full my-5'>
-                  <button
-                    type='submit'
-                    className='text-black bg-[#ffffff] hover:bg-[#e5e5e5] h-fit py-2 px-4 text-base font-semibold rounded-md'
-                  >
-                    Save Changes
-                  </button>
-                  <button
-                    type='submit'
-                    className='text-black bg-[#ffffff] hover:bg-[#e5e5e5] h-fit py-2 px-4 text-base font-semibold rounded-md'
-                  >
-                    Cancel
-                  </button>
-                  </div>
-                </form>
-              ) : null}
-            </div>
+            
           </div>
         </div>
       </div>
