@@ -71,7 +71,7 @@ const Calendar = ({ onSelectDate,Assignments }) => {
                   (day) => (
                     <th
                       key={day}
-                      className="border px-0 py-0 xl:px-4 xl:py-2 text-[10px] sm:text-sm"
+                      className="border px-0 py-0 xl:px-2 xl:py-2 text-[10px] sm:text-sm"
                     >
                       {day}
                     </th>
