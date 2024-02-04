@@ -29,11 +29,11 @@ const TeacherAssignments = () => {
   // loading assignment by fetch
   useEffect(() => {
     async function fetchAssignment() {
-      console.log('fetching..')
       try {
         const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/api/get-submitted-assignment`);
-        setAssignment(response.data.submittedAssignments);
-        console.log('api', response.data.submittedAssignments)
+        setAssignment(response.data);
+        // console.log('api', response.data)
+        console.log(response.data.submittedAssignments)
         // setLoading(false);
       } catch (error) {
         // setLoading(false);
@@ -59,20 +59,14 @@ const TeacherAssignments = () => {
               <div className='hideScrollbar flex px-4 flex-col gap-3 w-full overflow-y-auto rounded-lg scrollbar-hidden h-[300px] sm:h-[450px] xl:h-[598px]'>
                 <div>
 
-                  {user.teacher.uploadedAssignment.map((uploadedAss, idx) => (
+                  {user?.teacher?.uploadedAssignment.map((item, idx) => (
                     <PostedAssignments
                     onClick={handleClick}
-                    uploadedAss={uploadedAss}
+                    id={item._id}
+                    name={item.title}
+                    startDate={item.startDate}
                     />
                   ))}
-
-                  <div className='border-b-2 p-4 border-blue-100'>
-                    <p><span className='text-gray-600'>Title:</span> <span className='font-bold'>Assignment_Name</span></p>
-                    <div className='flex justify-between items-center'>
-                      <Link to='/dashboard/teacher/assignments/ass1'><button style={{background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)'}} className='mt-2 py-1 px-4 text-white text-sm bg-blue-600 hover:bg-blue-700 transition-all rounded-sm'>View Details</button></Link>
-                      <p>Posted Date: <span className='text-red-600'>28th Jan</span></p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -91,11 +85,11 @@ const TeacherAssignments = () => {
               </p>
 
               <div className='py-3 xl:px-16 h-full'>
-                {user.teacher.uploadedAssignment.map((item)=> (
+                {assignment?.submittedAssignments.map((item)=> (
                     <RecentSubmissions
-                      // studentName={}
-                      // assignmentTitle={assignment.assignment.title}
-                      // id={assignment._id}
+                      studentName={item.submittedBy.title}
+                      assignmentTitle={item.assignment.title}
+                      id={item._id}
                     />
                 ))}
               </div>
