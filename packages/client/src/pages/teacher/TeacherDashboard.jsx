@@ -36,7 +36,7 @@ const TeacherDashboard = () => {
     setSelectedDate(date);
   };
 
-  const Assignments = user.teacher.uploadedAssignment.map(assignment => ({
+  const Assignments = user?.teacher.uploadedAssignment.map(assignment => ({
     title: assignment.title,
     date: new Date(assignment.startDate).toLocaleDateString(),
     completed: true,
@@ -54,7 +54,7 @@ const TeacherDashboard = () => {
           <div className='flex flex-row gap-2 md:gap-4 items-center justify-between sm:justify-end w-full sm:w-fit'>
             <div className='flex flex-row gap-3 items-center '>
               <i className='text-[40px] sm:text-[40px] md:text-[50px] fa-regular fa-circle-user'></i>
-              <span>{user.teacher.name}</span>
+              <span>{user?.teacher.name}</span>
             </div>
             <button className='py-1 md:py-2 px-2 md:px-4 bg-red-600 rounded-md hover:bg-red-700 text-white'>
               Logout

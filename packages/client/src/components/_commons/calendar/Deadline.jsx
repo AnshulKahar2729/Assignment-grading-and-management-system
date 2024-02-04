@@ -10,7 +10,7 @@ function Deadline({ selectedDate, Assignments }) {
   const options = { day: 'numeric', month: 'short', year: 'numeric' };
   const formattedInputDate = inputDate.toLocaleDateString('en-US', options);
 
-  console.log(formattedInputDate);
+  // console.log(formattedInputDate);
 
   return (
     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll '>

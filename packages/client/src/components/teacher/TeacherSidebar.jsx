@@ -45,7 +45,8 @@ const TeacherSidebar = () => {
 
   
   function handleLogout() {
-    let result = window.confirm("are you sure?")
+    let result = window.confirm("are you sure?");
+    setSelectedItem('Dashboard')
     if(result){
       
     localStorage.removeItem('token');
