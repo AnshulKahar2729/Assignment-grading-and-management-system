@@ -36,7 +36,7 @@ const routes = [
     component: <TeacherAssignments />,
   },
   {
-    path: "/dashboard/teacher/assignments/ass1",
+    path: "/dashboard/teacher/assignments/:id",
     component: <TeacherParticularAssignment />,
   },
   {
