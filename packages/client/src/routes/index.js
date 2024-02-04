@@ -9,6 +9,7 @@ import TeacherAssignments from "../pages/teacher/TeacherAssignments";
 import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import TeacherParticularAssignment from "../pages/teacher/TeacherParticularAssignment";
 import TeacherSettings from "../pages/teacher/TeacherSettings";
+import TeacherSubmissionPage from "../pages/teacher/TeacherSubmissionPage";
 import TryAPI from "../tryAPI/TryAPI";
 
 const routes = [
@@ -41,7 +42,10 @@ const routes = [
     path: "/dashboard/teacher/settings",
     component: <TeacherSettings />,
   },
-
+  {
+    path: "/dashboard/teacher/assignments/submission/:id",
+    component: <TeacherSubmissionPage />,
+  },
   // student 
   {
     path: "/dashboard/student",

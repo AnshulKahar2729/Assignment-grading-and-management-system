@@ -18,25 +18,25 @@ const StudentParticularAssignment = () => {
   const [submittedAssignment, setSubmittedAssignment] = useState([]);
   
   // loading assignment by fetch
-  useEffect(() => {
-    async function fetchAssignment() {
-      console.log('fetching..')
-      try {
-        const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/api/student/assignment/${id}`);
-        setAssignment(response.data.assignment);
-        console.log(response.data.assignment)
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchAssignment() {
+  //     console.log('fetching..')
+  //     try {
+  //       const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/api/student/assignment/${id}`);
+  //       setAssignment(response.data.assignment);
+  //       console.log(response.data.assignment)
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setError(error);
+  //       setLoading(false);
+  //     }
+  //   }
 
-    fetchAssignment();
+  //   fetchAssignment();
 
-    // Cleanup function to cancel any pending requests if the component unmounts
-    return () => {};
-  }, [id]);
+  //   // Cleanup function to cancel any pending requests if the component unmounts
+  //   return () => {};
+  // }, [id]);
 
     const formattedEndDate = new Date(assignment?.endDate).toLocaleDateString('en-US', {
       year: 'numeric',
