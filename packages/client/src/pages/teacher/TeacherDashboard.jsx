@@ -6,17 +6,30 @@ import Calendar from '../../components/_commons/calendar/TeacherCalendar';
 import Updates from '../../components/_commons/calendar/Updates';
 
 const TeacherDashboard = () => {
-
-
   // console.log('Teacher Data -> ',user.teacher)
 
   const [selectedDate, setSelectedDate] = useState(null);
+  const { user, again, setAgain } = useContext(UserContext);
 
-  const {user} = useContext(UserContext);
+  useEffect(() => {
+    if (!user) {
+      setAgain(!again);
+    }
+  }, []);
+
+  // we need to make sure that first user is loaded then everything else
+  if (!user) {
+    return (
+      <div className=' flex items-center justify-center h-screen'>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   const name = user.teacher.name;
   const Assignment = user.teacher.uploadedAssignment;
-  
-  const handleDateSelect = (date) => {
+
+  const handleDateSelect = date => {
     setSelectedDate(date);
   };
 
@@ -24,10 +37,10 @@ const TeacherDashboard = () => {
     title: assignment.title,
     date: new Date(assignment.startDate).toLocaleDateString(),
     completed: true,
-    file:assignment.file,
+    file: assignment.file,
   }));
 
-  console.log('User ----------> ',user)
+  console.log('User ----------> ', user);
 
   return (
     <MainLayout>
@@ -45,10 +58,6 @@ const TeacherDashboard = () => {
             </button>
           </div>
         </div>
-
-
-
-
 
         <div className=' p-4 h-fit w-full'>
           <div className='flex flex-col xl:flex-row justify-between h-fit overflow-y-scroll hideScrollbar '>
@@ -104,9 +113,6 @@ const TeacherDashboard = () => {
                 </section>
               </div>
 
-
-
-
               <div className='w-full bg-white rounded-xl h-fit  flex flex-col md:flex-row gap-4 overflow-hidden'>
                 <section className='flex flex-col gap-3 w-full md:w-1/2 px-4 py-9'>
                   <p className='text-[16px] font-semibold'>My Teachers</p>
@@ -122,7 +128,7 @@ const TeacherDashboard = () => {
                       </div>
                       <i class='fa-solid fa-message'></i>
                     </div>
-                    
+
                     <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-black '>
                       <div className='flex gap-4 items-center'>
                         <i className='text-[30px] fa-regular fa-user'></i>
@@ -179,7 +185,9 @@ const TeacherDashboard = () => {
 
             <div className='flex  w-full xl:w-[34%]'>
               <div className='flex flex-col sm:flex-row xl:flex-col gap-4 lg:gap-3 justify-between bg-white text-black rounded-xl w-full p-4 h-full overflow-y-scroll hideScrollbar'>
-                <section className='w-full sm:w-1/2 xl:w-full'><Calendar onSelectDate={handleDateSelect} Assignments={Assignments}/></section>
+                <section className='w-full sm:w-1/2 xl:w-full'>
+                  <Calendar onSelectDate={handleDateSelect} Assignments={Assignments} />
+                </section>
 
                 <section className='w-full sm:w-1/2 xl:w-full flex flex-col gap-2'>
                   {/* <div className='p-3 flex flex-col gap-3 border-b border-black'>
@@ -200,7 +208,7 @@ const TeacherDashboard = () => {
                       <span>Time_of_Post</span> <span>Date_of_Post</span>
                     </p>
                   </div> */}
-                  <Updates  selectedDate={selectedDate} Assignments={Assignments}/>
+                  <Updates selectedDate={selectedDate} Assignments={Assignments} />
                 </section>
               </div>
             </div>
