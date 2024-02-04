@@ -8,10 +8,29 @@ import Updates from '../../components/_commons/calendar/Updates';
 const TeacherDashboard = () => {
 
 
-
   const [selectedDate, setSelectedDate] = useState(null);
+  const { user, again, setAgain } = useContext(UserContext);
 
-  const {user} = useContext(UserContext);
+  useEffect(() => {
+    if (!user) {
+      setAgain(!again);
+    }
+  }, []);
+
+  // we need to make sure that first user is loaded then everything else
+  if (!user) {
+    return (
+      <div className=' flex items-center justify-center h-screen'>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+
+  const name = user.teacher.name;
+  const Assignment = user.teacher.uploadedAssignment;
+
+
   
   const handleDateSelect = (date) => {
     setSelectedDate(date);
@@ -21,10 +40,10 @@ const TeacherDashboard = () => {
     title: assignment.title,
     date: new Date(assignment.startDate).toLocaleDateString(),
     completed: true,
-    file:assignment.file,
+    file: assignment.file,
   }));
 
-  console.log('User ----------> ',user)
+  console.log('User ----------> ', user);
 
   return (
     <MainLayout>
@@ -42,10 +61,6 @@ const TeacherDashboard = () => {
             </button>
           </div>
         </div>
-
-
-
-
 
         <div className=' p-4 h-fit w-full'>
           <div className='flex flex-col xl:flex-row justify-between h-fit overflow-y-scroll hideScrollbar gap-4'>
@@ -101,6 +116,8 @@ const TeacherDashboard = () => {
                 </section>
               </div>
 
+              <div className='w-full bg-white rounded-xl h-fit  flex flex-col md:flex-row gap-4 overflow-hidden'>
+                <section className='flex flex-col gap-3 w-full md:w-1/2 px-4 py-9'>
 
 
 
@@ -120,6 +137,7 @@ const TeacherDashboard = () => {
 
             <div className='w-full xl:w-[33%] bg-white rounded-xl h-fit  flex flex-col overflow-hidden'>
                 <section className='flex flex-col gap-3 w-full  px-4 py-9'>
+
                   <p className='text-[16px] font-semibold'>My Teachers</p>
                   <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
                     <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-black '>
@@ -133,7 +151,7 @@ const TeacherDashboard = () => {
                       </div>
                       <i className='fa-solid fa-message'></i>
                     </div>
-                    
+
                     <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-black '>
                       <div className='flex gap-4 items-center'>
                         <i className='text-[30px] fa-regular fa-user'></i>
@@ -186,6 +204,7 @@ const TeacherDashboard = () => {
                   </div>
                 </section>
               </div>
+
 
           </div>
         </div>
