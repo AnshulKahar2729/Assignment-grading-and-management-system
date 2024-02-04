@@ -32,7 +32,6 @@ const TeacherSubmissionPage = () => {
 
     fetchAssignment();
 
-    // Cleanup function to cancel any pending requests if the component unmounts
     return () => {};
   }, []);
   

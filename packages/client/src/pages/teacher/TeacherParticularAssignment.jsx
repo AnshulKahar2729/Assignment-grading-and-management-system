@@ -1,8 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layout/MainLayout';
 import TeacherSidebarLayout from '../../layout/teacher/TeacherSidebarLayout';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const TeacherParticularAssignment = () => {
+  
+  const {id} = useParams();
+  
+  const [assignment, setAssignment] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  // loading assignment by fetch
+  useEffect(() => {
+    async function fetchAssignment() {
+      try {
+        const response = await axios.get(`https://assignment-grading-and-management-system.onrender.com/api/teacher/assignment/${id}`);
+        setAssignment(response.data);
+        console.log('api 2:', response.data)
+        console.log(response.data)
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    }
+
+    fetchAssignment();
+
+    return () => {};
+  }, []);
+
   return (
     <MainLayout>
       <TeacherSidebarLayout />
