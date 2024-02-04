@@ -59,10 +59,10 @@ const StudentSidebar = () => {
 
   return (
     <div
-      className='pl-0 w-full sm:w-fit lg:pl-7 py-8 h-screen flex flex-col justify-between sidebar text-white'
+      className={`pl-0 w-full sm:w-fit lg:pl-7 sm:py-8 ${headerOn ? 'h-screen' : 'h-fit'} sm:h-screen flex flex-col justify-between  sidebar text-white`}
       style={{ background: 'radial-gradient(circle at 24.1% 68.8%, rgb(50, 50, 50) 0%, rgb(0, 0, 0) 99.4%)' }}
     >
-      <div className='flex flex-col gap-2'>
+      <div className='h-20 sm:h-full flex flex-col gap-2'>
         <div className='w-full lg:py-5 lg:pr-10 mb-16 flex flex-row justify-between items-center p-5'>
           <img className='h-10 sm:h-3 lg:h-auto lg:w-auto' src={Logo} alt='Logo' />
           <div onClick={handleHamburgerClick} className='flex sm:hidden cursor-pointer'>{headerOn ? <i className="text-2xl fa-solid fa-xmark"></i> : <i className="text-2xl fa-solid fa-bars"></i>}</div>
@@ -71,20 +71,20 @@ const StudentSidebar = () => {
           <Link to={item.link} key={item.title}>
             <div
               onClick={() => handleClick(item.title)}
-              className={`flex items-center gap-4 px-6 py-3 rounded-l-xl ${
+              className={`${headerOn ? 'flex' : 'hidden'} sm:flex items-center gap-4 px-6 sm:px-6 py-3 sm:rounded-l-xl text-2xl sm:text-base ${
                 item.title === selectedItem ? 'bg-[#d6d6d6] text-black' : 'bg-transparent'
               }`}
               id={item.title}
             >
-              <div>{item.icon}</div>
+              <div className=''>{item.icon}</div>
               <span className='sm:hidden lg:flex'><p>{item.title}</p></span>
             </div>
           </Link>
         ))}
       </div>
-      <div onClick={handleLogout} className='flex gap-4 px-6 py-3 items-center cursor-pointer'>
+      <div onClick={handleLogout} className={`${headerOn ? 'flex' : 'hidden'} sm:flex gap-4 p-8 sm:px-6 sm:py-3 items-center cursor-pointer hover:text-red-500 text-2xl sm:text-base`}>
         <i className='fa-solid fa-right-from-bracket fa-rotate-180'></i>
-        <span className='sm:hidden lg:flex'><p>Log Out</p></span>
+        <span className=' sm:hidden lg:flex'><p>Log Out</p></span>
       </div>
     </div>
   );

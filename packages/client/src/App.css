@@ -1,11 +1,15 @@
 /* .App {
   text-align: center;
 } */
+
 .sidebar{
   min-height: calc(100vh - 16px);
-
 }
-
+@media (max-width:640px) {
+  .sidebar{
+    min-height: calc(0vh - 16px);
+  }
+}
 
 
 /* Loader  */
