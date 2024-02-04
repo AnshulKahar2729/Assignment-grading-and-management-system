@@ -6,8 +6,8 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate(); // initialize useHistory hook
+    // const [loading, setLoading] = useState(true);
+    const [again, setAgain] = useState(false);
 
     useEffect(() => {
         const getUser = async () => {
@@ -26,22 +26,23 @@ export const UserProvider = ({ children }) => {
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         };
 
         if (localStorage.getItem("token")) {
             getUser();
-        } else{
+        } /* else{
             setLoading(false)
             console.log('user not logged In')
             // navigate('/')
-        }
-    }, []);
+        } */
+    }, [again]);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {loading ? <Loader/> : children}
+        <UserContext.Provider value={{ user, setUser, again, setAgain }}>
+            {/* {loading ? <Loader/> : children} */}
+            {children}
         </UserContext.Provider>
     );
 };

@@ -73,6 +73,10 @@ router.get("/submittedAssignments/:submittedAssignmentId", async (req, res) => {
       submittedAssignmentId
     ).populate({
       path : "assignment"
+    }).populate({
+      path : "submittedBy"
+    }).populate({
+      path : "teacherComments"
     })
     if (!submittedAssignmentDoc) {
       res.status(400).json({ message: "Submitted assignment does not exist" });
