@@ -67,9 +67,23 @@ def calculateGrade():
             relativeRelevancyScore = (relevancyScore*10)
             print("relevancyScore in app", relativeRelevancyScore)
 
-            grammerScore = 8
+            plag_threshold = 5
 
-            finalScore = (relativePlagirismScore + relativeRelevancyScore + grammerScore)/3
+            # Calculate the grammar score
+            grammerScore = 7
+
+    
+            # Normalize the plagiarism score based on the write answer score
+            normalized_plagiarism = relativePlagirismScore / relativeRelevancyScore if relativeRelevancyScore != 0 else 0
+    
+            # Calculate the total grade, considering the normalized plagiarism score
+            finalScore = relativeRelevancyScore + grammerScore - normalized_plagiarism
+            
+            if normalized_plagiarism > plag_threshold:
+                finalScore = finalScore - (plag_threshold / 2)
+            else:
+                finalScore = finalScore / 2
+            
 
             # Respond with a JSON object
             return jsonify({"grade" : finalScore, "plagirismScore" : relativePlagirismScore, "grammerScore" : grammerScore}), 200
