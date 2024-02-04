@@ -3,7 +3,7 @@ import TeacherSidebar from '../../components/teacher/TeacherSidebar';
 
 function TeacherSidebarLayout({ children }) {
   return (
-    <div className="h-screen sidebar-layout">
+    <div className="sm:h-screen sidebar-layout">
       <TeacherSidebar/>
       <div>
         {children}

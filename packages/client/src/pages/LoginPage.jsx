@@ -49,7 +49,7 @@ const LoginPage = () => {
       <div className="flex flex-col pt-16 md:pt-0 md:flex-row h-screen items-center">
         <div className="md:flex-1 bg-white p-8 flex flex-col items-center justify-center gap-6">
           <div className="max-w-md w-full ">
-            <Link href="/">
+            <Link to="/">
               <img src={Logo} className="h-20" alt="none" />
             </Link>
             <div className='pl-2'>
