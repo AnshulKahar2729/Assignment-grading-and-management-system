@@ -21,10 +21,10 @@ const submittedAssignmentSchema = new Schema({
     required: true,
     trim: true,
   },
-  teacherComments: {
+  teacherComments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Feedback",
-  },
+  }],
   automatedFeedback: {
     type: Object,
   },
@@ -36,6 +36,7 @@ const submittedAssignmentSchema = new Schema({
   grades: {
     type: String,
     // required: true,
+    default : 8
   },
 });
 
