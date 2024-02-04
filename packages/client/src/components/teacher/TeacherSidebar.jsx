@@ -14,8 +14,8 @@ const NAV = [
     link: '/dashboard/teacher/assignments',
   },
   {
-    title: 'Settings',
-    icon: <i className="fa-sharp fa-solid fa-gear"></i>,
+    title: 'Profile',
+    icon: <i class="fa-solid fa-user"></i>,
     link: '/dashboard/teacher/settings',
   },
 ];
@@ -45,7 +45,8 @@ const TeacherSidebar = () => {
 
   
   function handleLogout() {
-    let result = window.confirm("are you sure?")
+    let result = window.confirm("are you sure?");
+    setSelectedItem('Dashboard')
     if(result){
       
     localStorage.removeItem('token');

@@ -9,8 +9,11 @@ import { useNavigate } from 'react-router-dom';
 
 const StudentDashboard = () => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const { user, again, setAgain } = useContext(UserContext);
   const navigate = useNavigate();
+
+  
+  const { user, again, setAgain } = useContext(UserContext);
+
   // const
 
   useEffect(() => {
@@ -32,7 +35,7 @@ const StudentDashboard = () => {
   const name = user.student.name;
   const Assignment = user.student.submittedAssignment;
 
-  const handleDateSelect = date => {
+  const handleDateSelect = (date) => {
     setSelectedDate(date);
   };
 
@@ -130,44 +133,24 @@ const StudentDashboard = () => {
             </div>
             <div className=' w-full xl:w-[33.5%] bg-white rounded-xl max-h-[700px] px-4 py-9 flex flex-col gap-4'>
               <section className='flex flex-col gap-3 '>
-                <p className='text-[16px] font-semibold'>My Teachers</p>
+                <p className='text-[16px] font-semibold'>My Teacher</p>
                 <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
+                 
                   <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
                     <div className='flex gap-4 items-center'>
                       <i className='text-[30px] fa-regular fa-user'></i>
                       <p className='flex flex-col'>
                         {' '}
-                        <span className='font-semibold'>Sumit Kharate</span>{' '}
-                        <span>Java,Javascript</span>{' '}
+                        <span className='font-semibold'>Abhay Sir</span>{' '}
+                        <span>Physics</span>{' '}
                       </p>
                     </div>
-                    <i className='fa-solid fa-message'></i>
+                    {/* <i className='fa-solid fa-message'></i> */}
                   </div>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
-                    <div className='flex gap-4 items-center'>
-                      <i className='text-[30px] fa-regular fa-user'></i>
-                      <p className='flex flex-col'>
-                        {' '}
-                        <span className='font-semibold'>Sumit Kharate</span>{' '}
-                        <span>Java,Javascript</span>{' '}
-                      </p>
-                    </div>
-                    <i className='fa-solid fa-message'></i>
-                  </div>
-                  <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200'>
-                    <div className='flex gap-4 items-center'>
-                      <i className='text-[30px] fa-regular fa-user'></i>
-                      <p className='flex flex-col'>
-                        {' '}
-                        <span className='font-semibold'>Sumit Kharate</span>{' '}
-                        <span>Java,Javascript</span>{' '}
-                      </p>
-                    </div>
-                    <i className='fa-solid fa-message'></i>
-                  </div>
+                  
                 </div>
               </section>
-              <section className='flex flex-col gap-3'>
+              {/* <section className='flex flex-col gap-3'>
                 <p className='text-[16px] font-semibold'>Uncoming Events</p>
                 <div className='flex flex-col w-full gap-2 overflow-y-scroll hideScrollbar'>
                   <div className='p-3 flex flex-row items-center justify-between gap-3 border-b border-gray-200 '>
@@ -193,7 +176,7 @@ const StudentDashboard = () => {
                     <i className='fa-solid fa-message'></i>
                   </div>
                 </div>
-              </section>
+              </section> */}
             </div>
           </div>
         </div>

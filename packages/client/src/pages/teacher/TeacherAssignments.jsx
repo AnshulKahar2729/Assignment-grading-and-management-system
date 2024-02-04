@@ -50,7 +50,8 @@ const TeacherAssignments = () => {
   return (
     <MainLayout>
         <TeacherSidebarLayout/>
-          <div className='bg-[#d6d6d6] flex gap-4 p-4 flex-col md:flex-row '>
+        <div className='w-full h-full overflow-hidden'>
+          <div className='bg-[#d6d6d6] flex gap-4 p-4 flex-col md:flex-row h-screen'>
             
             <div className='lg:w-[50%] h-full w-full rounded-lg bg-white flex flex-col gap-3'>
               <p
@@ -79,10 +80,11 @@ const TeacherAssignments = () => {
                 </div>
               </div>
 
-              <section className='flex-1  bg-white rounded-lg '>
-              <p className='m-3 text-center text-lg font-semibold p-4 border-b border-gray-200'>
+              <p className='m-1 text-center text-lg font-semibold p-4 border-b border-gray-200'>
                 Recent Submission by Students
               </p>
+              <div className='overflow-y-scroll bg-white'>
+              <section className='flex-1  bg-white rounded-lg '>
 
               <div className='py-3 xl:px-16 h-full'>
                 {assignment?.submittedAssignments.map((item)=> (
@@ -94,12 +96,14 @@ const TeacherAssignments = () => {
                 ))}
               </div>
             </section>
+              </div>
 
             </div>
           </div>
           
             {/* MODAL  */}
             <MyModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen}/>
+        </div>
     </MainLayout>
   )
 }
